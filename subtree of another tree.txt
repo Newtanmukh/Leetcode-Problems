@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool isSubtree(TreeNode* s, TreeNode* t) {
+       
+            if(!s || !t){
+            return s == t;//if one is NULL,then other should also be NULL . to avoid confusion, assume that t will never be NULL. the confusion will become clear.
+        }else{
+            return isEqual(s, t) || isSubtree(s->left, t) || isSubtree(s->right, t);
+        }
+        
+    }
+    bool isEqual(TreeNode* p, TreeNode* q){
+        if(!p || !q){
+            return p == q;
+        }else{
+            return p->val == q->val && isEqual(p->left, q->left) && isEqual(p->right, q->right);
+        }
+    }
+};

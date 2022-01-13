@@ -1,0 +1,26 @@
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* p1, ListNode* p2) {
+
+        ListNode* newk=new ListNode();
+       
+        ListNode* iter=newk;        //it is like , iter is basically storing the address of newk.
+        
+        while(p1!=NULL && p2!=NULL)
+        {if(p1->val>p2->val)
+        { iter->next=p2;
+         p2=p2->next;}
+         else
+         {iter->next=p1;
+         p1=p1->next;}
+         
+         iter=iter->next;
+        }
+      
+       iter->next=p1?p1:p2;          //basically by this time, one of them have already reached the NULL. other hasn't. thats why we doing it here.
+      return newk->next;  
+        
+        
+        
+    }
+};

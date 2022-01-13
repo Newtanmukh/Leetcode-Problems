@@ -1,0 +1,77 @@
+//TIME EFFICIENT RECURSIVE SOLUTION
+
+
+    TreeNode* insertIntoBST(TreeNode* root, int val)
+	{
+        if (!root)
+			return new TreeNode(val);
+			
+        if (val > root->val)
+			root->right = insertIntoBST(root->right, val);
+        else 
+			root->left = insertIntoBST(root->left, val);
+			
+        return root;
+    }
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    void insert(TreeNode* root,int key)
+    {
+        
+        if(!root->left && !root->right)
+    {
+            TreeNode* newnode=new TreeNode();
+            newnode->val=key;
+            newnode->left=NULL;
+            newnode->right=NULL;
+            
+        if(key>root->val)
+            root->right=newnode;
+        else
+             root->left=newnode;
+        return;
+    }
+     if(root->val>key && root->left)
+     {insert(root->left,key);}
+     else if(root->val<key && root->right)
+     {insert(root->right,key);}
+        else if(root->val>key )
+        {TreeNode* newnode=new TreeNode();
+            newnode->val=key;
+            newnode->left=NULL;
+            newnode->right=NULL;
+             root->left=newnode;
+        }
+        else
+        {
+            TreeNode* newnode=new TreeNode();
+            newnode->val=key;
+            newnode->left=NULL;
+            newnode->right=NULL;
+             root->right=newnode;
+        }
+        
+     
+     
+     }
+    
+    TreeNode* insertIntoBST(TreeNode* root, int val) {
+        if(!root)
+        {
+            root=new TreeNode(val);
+            return root;
+        }
+        
+      
+        insert(root,val);
+    return root;
+    }
+};

@@ -1,0 +1,43 @@
+
+class Solution {
+public:
+    
+    void traverse_tree(TreeNode* root, int k,vector<int> &numbers){
+       if(root==NULL)
+            return;        
+        numbers.push_back(root->val);
+        
+        traverse_tree(root->left, k,numbers);
+        traverse_tree(root->right, k,numbers);   
+    }
+   
+    bool findTarget(TreeNode* root, int k) {
+        
+        vector<int> numbers;
+        traverse_tree(root,k,numbers);
+        int i=0,j=numbers.size()-1;
+            sort(numbers.begin(),numbers.end());
+        while(i<j)
+        {
+            if(numbers[i]+numbers[j]==k)
+                return true;
+            else if(numbers[i]+numbers[j]>k)
+            j--;
+            else
+            i++;  
+            
+            
+        }
+        return false;
+        
+    }
+    
+
+    
+    
+    
+    
+    
+    
+    
+};

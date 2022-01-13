@@ -1,0 +1,19 @@
+https://leetcode.com/problems/linked-list-cycle-ii/discuss/44781/Concise-O(n)-solution-by-using-C%2B%2B-with-Detailed-Alogrithm-Description
+
+
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        map<ListNode*,int>mapper;
+        
+        while(head!=NULL)
+        {
+            if(mapper[head]>0)
+                return head;
+            mapper[head]++;
+            head=head->next;
+        }
+        
+        return NULL;
+    }
+};

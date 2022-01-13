@@ -1,0 +1,30 @@
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        ListNode* returnpointer;
+        ListNode* traverse=head;
+        vector<int> store;        
+        while(traverse!=NULL)
+        {
+            store.push_back(traverse->val);
+            traverse=traverse->next;
+        }
+        int size=store.size();        
+        int i;
+        for(i=0;i<size;i=i+2)
+        {
+         if(i+1==size)
+             break;
+            swap(store[i],store[i+1]);
+        }        
+        returnpointer=head;
+        i=0;       
+        while(i<size)
+        {
+            head->val=store[i];
+            i++;
+            head=head->next;
+        }
+        return returnpointer;        
+    }
+};

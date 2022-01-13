@@ -1,0 +1,40 @@
+class Solution
+{
+public:
+Node *parent =NULL;
+
+void dfs(Node *root){
+    if(!root)return;
+    dfs(root->right);
+    root->next = parent;
+    parent = root;
+    dfs(root->left);
+    return;
+}
+void populateNext(Node *root)
+{dfs(root);}
+
+
+
+//MEMORY USING SOLUTION
+
+
+class Solution
+{
+public:
+   vector<Node*>in;
+   void populateNext(Node *root)
+   {
+       fn(root);
+       for(int i=0;i<in.size()-1;i++){
+           in[i]->next=in[i+1];
+       }
+       in[in.size()-1]->next=NULL;
+   }
+   void fn(Node *root){
+       if(!root)return ;
+       fn(root->left);
+       in.push_back(root);
+       fn(root->right);
+   }
+};

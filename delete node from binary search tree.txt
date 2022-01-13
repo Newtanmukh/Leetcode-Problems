@@ -1,0 +1,29 @@
+class Solution {
+public:
+    void inorder(TreeNode* root,vector<int> &vec,int key)
+    {
+        if(!root)
+            return;
+        
+        inorder(root->left,vec,key);
+       if(root->val!=key) vec.push_back(root->val);
+        inorder(root->right,vec,key);
+    }
+    TreeNode* helper(vector<int>& nums, int low,int high){
+        if(low<=high){
+            int mid = low + (high-low)/2;
+            TreeNode* root = new TreeNode(nums[mid]);
+            root->left = helper(nums, low, mid-1);
+            root->right = helper(nums, mid+1, high);
+            return root;
+        }
+        return NULL;
+    }
+    
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        vector<int>nums;
+        inorder(root,nums,key);
+        return  helper(nums, 0, nums.size()-1);
+        
+    }
+};

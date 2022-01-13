@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int total=0;
+    void dfs(TreeNode* root,bool isleft){
+        if(!root)
+            return;
+        
+        if(isleft && !root->left && !root->right)
+            total+=root->val;
+    
+        dfs(root->left,true);
+        dfs(root->right,false);        
+    }
+    
+    int sumOfLeftLeaves(TreeNode* root) {
+        dfs(root,false);
+        return total;
+    }
+};

@@ -1,0 +1,26 @@
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        ListNode* start=head;
+        vector<int>p;
+        while(head)
+        {
+            p.push_back(head->val);
+            head=head->next;
+        }
+        
+        ListNode* returntype=start;
+        
+        for(auto y:p)
+        {if(y<x)
+        {start->val=y;
+        start=start->next;}}
+        
+        for(auto y:p)
+        {if(y>=x)
+         start->val=y,start=start->next;}
+        
+        return returntype;
+        
+    }
+};

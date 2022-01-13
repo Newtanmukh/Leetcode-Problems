@@ -1,0 +1,29 @@
+
+class Solution {
+public:
+  
+    
+    void dfs(TreeNode* root,int &currsum)
+    {
+        if(!root)
+            return;
+        dfs(root->right,currsum);
+         currsum=currsum+root->val;
+        root->val=currsum;
+        dfs(root->left,currsum);
+       
+        
+        
+        
+        
+        
+    }
+ 
+    
+    TreeNode* convertBST(TreeNode* root) {
+     int currsum=0;
+        dfs(root,currsum);
+        return root;
+        
+    }
+};

@@ -1,0 +1,18 @@
+class Solution {
+public:
+
+    TreeNode* searchBST(TreeNode* root, int key)
+{
+    // Base Cases: root is null or key is present at root
+    if (root == NULL || root->val == key)
+       return root;
+    
+    // Key is greater than root's key
+    if (root->val < key)
+       return searchBST(root->right, key);
+ 
+    // Key is smaller than root's key
+    return searchBST(root->left, key);
+}
+    
+};

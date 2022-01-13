@@ -1,0 +1,20 @@
+//in this problem, basically you will have to just keep the track of the index of the elemnt on the left which is just greater than the current element, then simply the difference of these indexes will give us the result for each index.
+  
+vector <int> calculateSpan(int price[], int n)
+    {
+        stack<pair<int,int>> st;
+        vector<int> span;
+        for(int i = 0; i < n; i++){
+            if(st.empty()){
+                span.push_back(1); //this might be the initial condition, where the index is actually at 0.
+            } else {
+                while(!st.empty() && st.top().first <= price[i]){
+                    st.pop();
+                }
+                if(st.empty()) span.push_back(i+1);
+                else span.push_back(i - st.top().second);
+            }
+            st.push({price[i],i});
+        }
+        return span;
+    }

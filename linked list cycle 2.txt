@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        
+        map<ListNode*,int> linked_list;
+        
+        while(head!=NULL)
+        {
+            if(linked_list[head]>0)
+                return true;
+            
+            linked_list[head]++;
+            
+            head=head->next;
+            
+            
+        }
+        
+        return false;
+    }
+};

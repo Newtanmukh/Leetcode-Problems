@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int n = nums.size();
+        /*
+            Idea: From each point we check maximum distance we can reach
+                  if reach is less than current index then it is not possible
+                  to move further. basically we have to detect if valley exist or not.
+        */
+        int reach = 0;
+        for(int i=0; i<n; i++){
+            if(reach < i)
+                return false;
+            reach = max(reach, i + nums[i]);
+        }
+        return true;
+    }
+};

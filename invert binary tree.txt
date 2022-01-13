@@ -1,0 +1,29 @@
+class Solution {
+public:
+    
+    void invertfunction(TreeNode* root)
+    {
+        
+        if(root==NULL)
+     return;
+    
+         TreeNode* temp = root->left;          //start from the topmost levels then keep inverting the bopttom things as well.
+        root->left = root->right;
+        root->right = temp;
+       
+		invertTree(root->left);
+		
+        invertTree(root->right);
+     
+
+    
+    }
+    
+    
+    TreeNode* invertTree(TreeNode* root) {
+
+        invertfunction(root);
+        
+        return root;
+    }
+};

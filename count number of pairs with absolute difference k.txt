@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int countKDifference(vector<int>& nums, int k) {
+         map<int,int> mapper;
+        int count=0;
+        
+        for(auto x:nums)
+        {
+            count=count+mapper[x-k]+mapper[k+x];
+            mapper[x]++;
+        }
+        
+        return count;
+    }
+};

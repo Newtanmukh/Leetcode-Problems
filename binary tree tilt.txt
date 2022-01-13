@@ -1,0 +1,23 @@
+
+class Solution {
+public:
+   
+    int recur(TreeNode* root,int& sum)
+    {
+        if(!root)
+            return 0;
+        
+        int l=recur(root->left,sum);
+        int r=recur(root->right,sum);
+        
+        sum+=abs(l-r);
+        
+        return root->val+l+r;
+    }
+    int findTilt(TreeNode* root) {
+        int sum=0;
+       recur(root,sum);
+        
+        return sum;
+    }
+};

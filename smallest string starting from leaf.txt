@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string mini="~";
+    void dfs(TreeNode* root,string curr)
+    {
+        if(!root)
+        {
+            return;
+        }
+        curr+=(char)(root->val+'a');
+        if(root->left==NULL&&root->right==NULL)
+        {
+            reverse(curr.begin(),curr.end());
+            mini=min(curr,mini);
+        }
+        dfs(root->left,curr);
+        dfs(root->right,curr);
+     
+    }
+    string smallestFromLeaf(TreeNode* root) {
+      
+    dfs(root,"");    
+    return mini;
+    }
+};

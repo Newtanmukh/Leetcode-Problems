@@ -1,0 +1,31 @@
+/**
+ * Definition for a binary tree node.
+class Solution {
+public:
+   
+    
+    void dfs(TreeNode* root,set<int>& p)
+    {
+        if(!root)
+            return;       
+        dfs(root->left,p);
+        p.insert(root->val);
+            dfs(root->right,p);      
+    }
+    
+    
+    int findSecondMinimumValue(TreeNode* root) {
+        set<int> vec;
+        dfs(root,vec);
+        int i=0;
+        if(vec.size()==1)
+            return -1;
+        int k=*vec.begin();
+        for(auto x:vec)
+        {if(i==1)
+           k= x; 
+            i++;
+        }
+        return k;     
+    }
+};

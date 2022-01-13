@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& grid) {
+        int row=grid.size();
+        int col=grid[0].size();
+        
+        int i,j;
+       
+        for(i=1;i<row;i++)
+        {
+            grid[i][0]+=grid[i-1][0];  //can only move right or down. so least way of going right is take right only.(for the first row)
+        }
+        
+        for(j=1;j<col;j++)
+        {
+            grid[0][j]+=grid[0][j-1];
+        }
+        
+        for(i=1;i<row;i++)
+            for(j=1;j<col;j++)
+            {
+                {
+                    grid[i][j]=grid[i][j]+min(grid[i-1][j],grid[i][j-1]);
+                }
+            }
+        
+        return grid[row-1][col-1];
+      
+    }
+};

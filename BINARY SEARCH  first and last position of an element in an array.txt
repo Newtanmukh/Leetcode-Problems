@@ -1,0 +1,67 @@
+class Solution {
+public:
+    int res1=-1;
+    int res2=-1;
+    
+    void binarysearchfirst(vector<int>nums,int target)
+    {
+        int low=0;
+        int high=nums.size()-1;
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            
+            if(nums[mid]==target)
+            {res1=mid;
+             high=mid-1;
+             }
+            else if(nums[mid]>target)
+            {
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }   
+    }
+    
+    
+       void binarysearchlast(vector<int>nums,int target)
+    {
+        int low=0;
+        int high=nums.size()-1;
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            
+            if(nums[mid]==target)
+            {res2=mid;
+             low=mid+1;
+             }
+            else if(nums[mid]>target)
+            {
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }   
+    }
+    
+    
+    
+    vector<int> searchRange(vector<int>& nums, int target) {
+        
+        vector<int>p;
+        binarysearchfirst(nums,target);
+        binarysearchlast(nums,target);
+        
+        
+        p.push_back(res1);
+        p.push_back(res2);
+        
+        return p;
+    }
+};

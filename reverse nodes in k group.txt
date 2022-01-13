@@ -1,0 +1,35 @@
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode* start=head;
+        vector<int>p;
+        while(start)
+        {
+            p.push_back(start->val);
+            start=start->next;
+        }
+        
+        int left=0,right=k-1,size=p.size();
+        
+        while(right<size)
+        {
+          int i=left,j=right;
+            while(i<j)
+            {
+                swap(p[i],p[j]);
+                i++,j--;
+            }
+            left=left+k;
+            right+=k;
+        }
+        
+        ListNode* returntype=head;
+        int iter=0;
+        while(head)
+        {head->val=p[iter];
+        iter++;
+        head=head->next;}
+        return returntype;
+        
+    }
+};

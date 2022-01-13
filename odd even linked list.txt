@@ -1,0 +1,35 @@
+
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        if(!head )
+            return head;
+        
+        ListNode* p=new ListNode(-1);
+        p=head;
+        vector<int> odd,even;
+        int i=0;
+        while(p)
+        {
+            if(i %2 !=0)
+            {even.push_back(p->val);}
+            else
+            {odd.push_back(p->val);}
+            i++;
+            p=p->next;
+        }
+        
+        ListNode* returntype=head;
+        ListNode* op=returntype;
+        for(auto x:odd)
+        {returntype->val=x;
+        returntype=returntype->next;}
+        
+        for(auto x:even)
+        {returntype->val=x;
+        returntype=returntype->next;}
+      
+        return op;
+        
+    }
+};

@@ -1,0 +1,51 @@
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        int i,j;
+        
+        int a[125],b[125];
+        
+        for(i=0;i<100;i++)
+        {a[i]=0;
+        b[i]=0;}
+        
+        for(i=0;i<t.length();i++)
+        {if(t[i]==' ')
+            a[0]++;
+         else
+            a[t[i]]++;}
+        
+       
+        
+     
+        
+        
+        for(i=0;i<s.length();i++)
+        {if(s[i]==' ')
+            b[0]++;
+         else
+            b[t[i]]++;}
+        
+        
+        
+        i=0;
+        j=s.length()-1;
+        int x=t.length();
+        while(j-i+1>=x)
+        {
+          if(b[s[i]]>a[s[i]]||a[s[i]]==0)
+              i++;
+           if(b[s[j]]>a[s[j]]||a[s[j]]==0)
+               j--;
+            
+            
+            
+            
+            
+        }
+        
+        return s.substr(i,j-i+1);
+        
+        
+    }
+};

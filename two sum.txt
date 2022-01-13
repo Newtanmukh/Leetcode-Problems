@@ -1,0 +1,26 @@
+// Assuming that each element on the array is unique.
+
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& a, int k) 
+	{
+		vector<int> v;
+		int n=a.size();
+		map<int,int> m;
+		for(int i=0;i<n;i++)
+		{
+			
+				m[a[i]]=i;
+		}
+        for(int i=0;i<n;i++){    
+            if(m.count(k-a[i]) && m[k-a[i]]!=i) // consider the case when array is [3,2,6] and the target sum is 6. if we dont put the second condition , then [0,0] will be printed which we dont want(since indexes should be different)
+			{
+				v.push_back(m[k-a[i]]);
+				v.push_back(i);
+				return v;
+			}  }
+        
+        return v;        
+    }
+};

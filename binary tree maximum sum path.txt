@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int maxi=INT_MIN;
+    int max(int a,int b)
+    {return a>b?a:b;}
+    int findmax(TreeNode* root)
+    {
+        if(!root)
+            return 0;
+        
+        int lh=findmax(root->left);
+        int rh=findmax(root->right);
+        if(lh<0)lh=0;
+        if(rh<0)rh=0;
+        maxi=max(lh+rh+root->val,maxi);
+            
+            return root->val+max(lh,rh);
+        
+    }
+    
+    int maxPathSum(TreeNode* root) {
+        
+        int x=findmax(root);
+        return maxi;
+    }
+};

@@ -1,0 +1,69 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+
+
+
+//algorithm is that , basically from the common node all the nodes will be equal. so just position the linkedin lists such that they are at the same index from the begining. after that, traverse the linkedin lists both simultaneously and if you find any common node, then return the node.
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        
+        if(headA==NULL || headB==NULL)
+            return NULL;
+        
+        ListNode* first=headA;
+        ListNode* second=headB;
+        
+        int length1=0,length2=0;
+        
+        while(first!=NULL)
+        {length1++;
+        first=first->next;}
+        
+        while(second!=NULL)
+        {length2++;
+        second=second->next;}
+        
+         ListNode* x=headA;
+        ListNode* y=headB;
+        int traverse;
+        
+        if(length2>length1)
+        {traverse=length2-length1;
+         
+         while(traverse--)
+         {
+             y=y->next;
+             
+         }
+            
+        }
+        else
+        {traverse=length1-length2;
+             while(traverse--)
+         {
+             x=x->next;
+             
+         }
+         
+        }
+        
+        while(x!=NULL && y!=NULL)
+        {
+            if(x==y)
+                return x;
+            
+            x=x->next;
+            y=y->next;
+            
+        }
+        return NULL;
+        
+    }
+};

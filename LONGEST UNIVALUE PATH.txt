@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int res = 0;
+    int traverse(TreeNode* root, TreeNode* prev){
+        
+        if(!root) return 0;
+        
+        int left = traverse(root->left, root);
+        int right = traverse(root->right, root);
+        
+        int curr = 1 + left + right;
+        res = max(res, curr);
+        return prev->val == root->val ? (1 + max(left, right)) : 0;
+    }
+    
+    int longestUnivaluePath(TreeNode* root) {
+        if(!root) return 0;
+        TreeNode* prev = new TreeNode(root->val);
+        traverse(root, prev);
+        return res - 1;
+    }
+};

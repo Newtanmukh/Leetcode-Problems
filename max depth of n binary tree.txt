@@ -1,0 +1,25 @@
+
+
+class Solution {
+public:
+    
+    void dfs(Node* root,int count,int &maxi)
+    {if(root==NULL)
+        return;
+     
+     count++;
+     maxi=max(maxi,count);
+     
+     for(auto x:root->children)
+     {dfs(x,count,maxi);}
+        
+    }
+    
+    int maxDepth(Node* root) {
+        
+        int count=0,maxi=0;
+         dfs(root,count,maxi);
+        return maxi;
+        
+    }
+};

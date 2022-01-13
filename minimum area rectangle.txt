@@ -1,0 +1,41 @@
+class Solution {
+public:
+    int minAreaRect(vector<vector<int>>& points) {
+        if(points.size()<4)
+            return 0;
+        
+        set<vector<int>> pointset;
+        int min_area=INT_MAX;
+        
+        for(auto point:points)
+            pointset.insert(point);
+        
+        int i;
+        int j;
+        for(i=0;i<points.size();i++)
+            for(j=i+1;j<points.size();j++)
+        {
+            int xfirst=points[i][0];
+            int yfirst=points[i][1];
+            int xsecond=points[j][0];
+            int ysecond=points[j][1];
+            
+            if(xfirst!=xsecond && yfirst!=ysecond )
+            {
+                if(pointset.count({xfirst,ysecond}) && pointset.count({xsecond,yfirst}))
+                {
+                    int currarea=abs(xsecond-xfirst)*abs(ysecond-yfirst);
+                    min_area=min(min_area,currarea);
+                }
+            }
+            
+            
+        }
+        
+        if(min_area==INT_MAX)
+            return 0;
+        else
+            return min_area;
+        
+    }
+};

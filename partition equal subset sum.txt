@@ -1,0 +1,35 @@
+class Solution {
+public:
+    bool canPartition(vector<int>& nums) {
+        int sum=0;
+        for(auto x:nums)
+            sum+=x;
+        
+        if(sum%2) // if odd, return false
+            return false;
+        
+        int p=sum/2;
+        
+        bool a[p+1][nums.size()+1];
+        int i,j;
+        for(j=0;j<=nums.size();j++)
+        {
+            a[0][j]=true;
+        }
+        
+        for(j=1;j<p+1;j++)
+        {a[j][0]=false ;}
+        
+        for (i = 1; i <= p; i++) {
+		for (j = 1; j <= nums.size(); j++) {
+			a[i][j]=a[i][j-1];
+			if (i >= nums[j - 1])
+				a[i][j] = a[i][j-1] || a[i - nums[j - 1]][j - 1];
+            
+                
+		}
+	}
+        return a[p][nums.size()];
+        
+    }
+};

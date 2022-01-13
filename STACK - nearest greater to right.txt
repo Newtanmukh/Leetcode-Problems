@@ -1,0 +1,32 @@
+vector<long long> nextLargerElement(vector<long long> arr, int n){
+      
+      vector<long long> v;
+      stack<long long> s;
+
+      int i=0;int j=n-1;
+      s.push(arr[j]);
+      v.push_back(-1);//for the rightmost element in the array, there cant be any more of element which will be greater than a[n-1].
+
+      for(j=n-2;j>=0;j--)
+      {
+         
+            while(s.size()>0 && s.top()<arr[j])
+            {
+                s.pop();
+            }
+         
+         if(s.size()==0)
+         {
+            v.push_back(-1);
+         }
+        else
+         {
+            v.push_back(s.top());
+
+         }
+         s.push(arr[j]);
+      }
+      reverse(v.begin(),v.end());
+     return v;
+      
+    }

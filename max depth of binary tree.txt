@@ -1,0 +1,36 @@
+
+class Solution {
+public:
+    
+    void maxdepth(TreeNode* root,int count,int &maxi)
+    {
+        if(root==NULL)
+            return;
+        
+        count++;
+        maxi=max(count,maxi);
+        
+        maxdepth(root->left,count,maxi);
+         maxdepth(root->right,count,maxi);
+        
+    }
+    
+    int maxDepth(TreeNode* root) {
+        
+        int count=0,maxi=0;
+        maxdepth(root,count,maxi);
+        
+        return maxi;
+        
+    }
+};
+
+
+
+//PURELY RECURSIVE SOLUTION
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        return root ? 1 + max(maxDepth(root->left), maxDepth(root->right)) : 0;
+    }
+};
