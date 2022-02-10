@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+unordered_map<int, int> freq;
+    int ans = 0;
+    for (int n : nums) {
+        if (k == 0) {
+            if (freq[n] == 1) ++ans; // only count once, since we want diffeent numbers of  pair(i,j) and not the total number of.
+        } else if (!freq.count(n)) { // only count when the first time n appears
+            if (freq.count(n - k)) ++ans;//we are just checking if that n-k or n+k exists or not. and thats it.
+            if (freq.count(n + k)) ++ans;
+        }
+        ++freq[n];
+    }
+    return ans;
+    }
+};

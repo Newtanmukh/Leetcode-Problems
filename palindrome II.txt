@@ -1,0 +1,38 @@
+class Solution {
+public:
+    
+    set<vector<int>> ans;
+    
+    
+    void permutate(vector<int> nums,int l,int r)
+    {
+        if(l==r)
+            ans.insert(nums);
+        else
+        {
+            
+            for(int i=l;i<=r;i++)
+            {
+                swap(nums[l],nums[i]);
+                
+                permutate(nums,l+1,r);
+                
+                swap(nums[l],nums[i]);
+                
+            }
+        }
+        
+        
+    }
+    
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+    
+        vector<vector<int>>ok;
+        permutate(nums,0,nums.size()-1);
+        for(auto x:ans)
+            ok.push_back(x);
+        
+        return ok;
+        
+    }
+};
