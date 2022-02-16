@@ -1,0 +1,39 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+      
+        string res="";
+        
+        for(auto c:s)
+        {
+            if(c>='a' && c<='z')
+                res+=c;
+            else if(c>='A' && c<='Z')
+                res+=c-'A'+'a';
+            else if(c>='0' && c<='9')
+                res+=c;
+      
+        }
+        
+        map<char,int> mapper;
+        
+        for(auto &x:res)
+            mapper[x]++;
+        
+        int count=0;
+        
+        for(auto x:mapper)
+        {
+            
+            if(x.second%2!=0)
+                count++;
+            
+        }
+        
+        if(count>=2)
+            return false;
+        return true;
+        
+        
+    }
+};

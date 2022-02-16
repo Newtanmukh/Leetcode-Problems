@@ -1,0 +1,71 @@
+class Solution {
+public:
+    vector<vector<int>> ans; // to store answer
+    
+    void solve(vector<int> &arr, int i, vector<int> temp)
+    {
+        if(i == arr.size()) // if we find out one possibility and after we have reached the end of the array.
+        {
+            //push into the final answer that possibility
+            ans.push_back(temp); 
+            return;
+        }
+        
+        solve(arr, i + 1, temp); // finding possibility for next index
+        
+        temp.push_back(arr[i]); // push into the array
+        
+        solve(arr, i + 1, temp); //again finding out the next possibility
+        
+    }
+    vector<vector<int>> subsets(vector<int>& arr) {
+         vector<int> temp; // vector to store temporary answer
+        
+        solve(arr, 0, temp); // function that will generate our final answer
+        
+        return ans; // return the final answer
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    
+    vector<vector<int>>ans;
+    set<vector<int>>s;
+    
+    void permutate(vector<int>p,vector<int>original,int i)
+    {s.insert(p);
+     
+     if(i==original.size())
+         return;
+     
+     permutate(p,original,i+1);
+     p.push_back(original[i]);
+     permutate(p,original,i+1);
+        
+        
+    }
+    
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<int>p;
+        
+        permutate(p,nums,0);
+        for(auto &x:s)
+            ans.push_back(x);
+        
+        return ans;
+    }
+};

@@ -1,0 +1,38 @@
+class Solution {
+public:
+     vector<int>returne;
+    vector<int> findAnagrams(string s2, string s1) {
+        
+       vector<int> arr(26,0),b(26,0);
+         
+        int m=s1.length();
+        int n=s2.length();
+       
+       
+        
+        if(n<m)
+            return returne;
+         
+        for(int i=0;i<m;i++){
+            
+            b[s1[i]-'a']++;
+            arr[s2[i]-'a']++;
+            
+        }
+         
+         
+   
+        for(int i=m;i<n;i++){
+            if(arr==b)
+            {returne.push_back(i-m);}
+            int left=i-m;
+            arr[s2[i]-'a']++;
+            arr[s2[left]-'a']--;
+        }
+         
+        if(arr==b)
+              returne.push_back(s2.size()-s1.size());
+         
+        return returne;
+    }
+};

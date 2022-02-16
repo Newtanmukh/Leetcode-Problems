@@ -3,12 +3,14 @@ public:
     ListNode* swapPairs(ListNode* head) {
         ListNode* returnpointer;
         ListNode* traverse=head;
-        vector<int> store;        
+        vector<int> store;
+        
         while(traverse!=NULL)
         {
             store.push_back(traverse->val);
             traverse=traverse->next;
         }
+        
         int size=store.size();        
         int i;
         for(i=0;i<size;i=i+2)
@@ -16,9 +18,11 @@ public:
          if(i+1==size)
              break;
             swap(store[i],store[i+1]);
-        }        
-        returnpointer=head;
-        i=0;       
+        }
+        
+        returnpointer=head; // this solution did not gave any NULL pointer error, simply because we are NOT creating any new node here by using ListNode(), infact we are reiterating over the linkedlist again.
+        i=0;
+        
         while(i<size)
         {
             head->val=store[i];
