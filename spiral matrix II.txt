@@ -1,0 +1,66 @@
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        int num=n*n;
+        int i;
+
+    
+        //dir=0 means left to right,dir=1 means up to down, dir=2 means right to left and so on.
+        
+        int top=0;
+        int bottom=n-1;
+        int left=0;
+        int right=n-1;
+        
+        int dir=0;
+        
+        vector<vector<int>> vec(n,vector<int>(n,0));
+        i=1;
+        
+        int j;
+        while(left<=right && top<=bottom)
+        {
+            if(dir==0)
+            {
+                for(j=left;j<=right;j++)
+                {
+                    vec[top][j]=i;
+                    i++;
+                }
+                top++;
+            }
+            else if(dir==1)
+            {
+                for(j=top;j<=bottom;j++)
+                {
+                    vec[j][right]=i;
+                    i++;
+                }
+                right--;
+            }
+            else if(dir==2)
+            {
+                for(j=right;j>=left;j--)
+                {
+                    vec[bottom][j]=i;
+                    i++;
+                }
+                bottom--;
+            }
+            else
+            {
+             for(j=bottom;j>=top;j--)
+             {
+                 vec[j][left]=i;
+                 i++;
+             }
+                left++;
+                
+            }
+            dir=(dir+1)%4;
+        }
+        return vec;
+            
+        
+    }
+};
