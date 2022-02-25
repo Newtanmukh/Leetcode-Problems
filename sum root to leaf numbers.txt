@@ -1,23 +1,23 @@
-//to be edited. this is giving wrong ans.
+
 class Solution {
 public:
     
-    void dfs(TreeNode* root,int &sum,int val)
-    {
-        if(!root)
-        {sum+=val;
-        return;}
-        val+=10*val+root->val;
-        dfs(root->left,sum,val);
-        dfs(root->right,sum,val);
+    int sumNumbers(TreeNode* root) {
+        int total_sum = 0;
         
+        dfs(root, total_sum, 0);
+        
+        return total_sum;
     }
     
-    int sumNumbers(TreeNode* root) {
-   int sum=0;
-        int val=0;
-        dfs(root,sum,val);        
-        return sum/2;
+    void dfs(TreeNode* root, int& total_sum, int curr){
+        if(root == NULL) return;
         
+        curr = (curr * 10) + root->val;
+        
+        if(!root->right && !root->left) total_sum += curr;
+        
+        if(root->left) dfs(root->left, total_sum, curr);
+        if(root->right) dfs(root->right, total_sum, curr);
     }
 };
