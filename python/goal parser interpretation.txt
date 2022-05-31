@@ -1,0 +1,4 @@
+class Solution:
+    def interpret(self, command: str) -> str:
+        pot= str(command.replace("()","o").replace("(al)","al"))
+        return pot

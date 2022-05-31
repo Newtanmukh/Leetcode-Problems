@@ -1,0 +1,13 @@
+class Solution:
+    def capitalizeTitle(self, title: str) -> str:
+        if len(title)==1 or len(title)==2:
+            title=title.lower()
+        else:
+            words=title.split(' ')
+            ret=""
+            for word in words:
+                word=word.lower().capitalize()
+                ret=ret+word+" "
+                
+        return ret.rstrip()            
+            

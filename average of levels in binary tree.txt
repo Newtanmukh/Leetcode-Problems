@@ -2,6 +2,7 @@ class Solution {
 public:
     vector<double> averageOfLevels(TreeNode* root) {
         vector<double> returnvector;
+
         if(!root)
             return returnvector;
         vector<vector<int>> ans;

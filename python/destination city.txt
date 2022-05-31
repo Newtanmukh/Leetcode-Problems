@@ -1,0 +1,14 @@
+class Solution:
+    def destCity(self, paths: List[List[str]]) -> str:
+        start=str(paths[0][0])
+        dict1={}
+        
+        for path in paths:
+            dict1[path[0]]=path[1]
+            print(path[0]+" "+path[1])
+        
+        while start in dict1.keys():
+            start=dict1[start]
+        
+        return start
+         
