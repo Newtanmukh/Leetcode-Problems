@@ -1,0 +1,1 @@
+compare the first and last element. if first>last then do the descending BS otherwise normal BS.

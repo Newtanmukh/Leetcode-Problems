@@ -1,0 +1,12 @@
+
+
+
+int low=0;
+int high=1;
+
+while(arr[high]!=1)
+{
+low=high;
+high=2*high;}
+
+FindFirstOccurence(low,high)
