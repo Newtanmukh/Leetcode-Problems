@@ -6,7 +6,7 @@ public:
         if(x<0||x>=image.size()||y<0||y>=image[0].size()||image[x][y]!=same||image[x][y]==newColor)
             return;
         image[x][y]=newColor;
-       
+         
         
         dfs(image,  x+1,  y, newColor,same);
          dfs(image,  x-1,  y, newColor,same);
