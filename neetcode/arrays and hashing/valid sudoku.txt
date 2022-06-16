@@ -1,0 +1,95 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+    
+        
+        return isrow(board)and  iscolumn(board) and isnine(board);
+    } 
+    
+    bool isrow(vector<vector<char>>& board)
+    {
+        int i,j;
+        set<char>s;
+        for(i=0;i<9;i++)
+        {
+            s.clear();
+            for(j=0;j<9;j++)
+            {
+                if(board[i][j]!='.')
+                {
+                    if(s.count(board[i][j]))
+                    {
+                        return false;
+                    }
+                    else
+                        s.insert(board[i][j]);
+                }
+                
+            }
+            
+        }
+        return true;
+        
+    }
+    
+    bool iscolumn(vector<vector<char>>& board)
+    {
+        int i,j;
+        set<char>s;
+        for(j=0;j<9;j++)
+        {
+            s.clear();
+            for(i=0;i<9;i++)
+            {
+                if(board[i][j]!='.')
+                {
+                    if(s.count(board[i][j]))
+                    {
+                        return false;
+                    }
+                    else
+                        s.insert(board[i][j]);
+                }
+                
+            }
+            
+        }
+        return true;
+        
+        
+    }
+    
+     bool isnine(vector<vector<char>>& board)
+    {set<char>s;
+        for(int row=0;row<3;row++)
+        {
+            for(int col=0;col<3;col++)
+            {
+                
+               
+                s.clear();
+                for(int x=row*3;x<row*3+3;x++)
+                {
+                     for(int y=col*3;y<col*3+3;y++)
+                     {
+                    if(board[x][y]!='.')
+                    {
+                    if(s.count(board[x][y]))
+                    {
+                        return false;
+                    }
+                    else
+                        s.insert(board[x][y]);
+                      }
+                     }
+                    
+                }
+                
+            }
+            
+        }
+         return true;
+        
+    }
+    
+};

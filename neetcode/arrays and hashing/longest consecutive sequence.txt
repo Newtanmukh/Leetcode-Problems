@@ -1,0 +1,42 @@
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int longestConsecutive(vector<int>& nums) {
+        if(nums.size()==0)
+            return 0;
+        
+        if(nums.size()==1)
+            return 1;
+        
+        if(nums.size()==2)
+            return abs(nums[0]-nums[1])==1?2:1;
+        
+        
+        sort(nums.begin(),nums.end());
+        
+        int len=1;
+        int maxlen=1;
+        
+        for(int i=1;i<nums.size();i++)
+        {
+            while(nums[i]-nums[i-1]==1)
+            { len++;
+               i++;}
+            
+            maxlen=max(len,maxlen);
+            
+            len=1;
+            
+        }
+        return maxlen;
+        
+    }
+
+int main()
+{    vector<int>p={6,8,10,11,9,1,2,7,3};
+    cout<<longestConsecutive(p)<<endl;
+
+    return 0;
+}

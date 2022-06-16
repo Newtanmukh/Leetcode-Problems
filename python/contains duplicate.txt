@@ -1,0 +1,54 @@
+class Solution(object):
+    def containsDuplicate(self, nums):
+        hashset = set()
+        
+        for n in nums:
+            if n in hashset:
+                return True
+            hashset.add(n)
+        return False
+
+
+
+
+TLE Solution :
+
+class Solution(object):
+    def containsDuplicate(self, nums):
+        dict={}
+        
+        for x in nums:
+            if x in dict.keys():
+                return True
+            
+            dict[x]=1
+        
+        return False
+
+
+
+
+
+
+
+
+
+C++ SOLUTION 
+
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        set<int> s;
+        
+        for(auto x:nums)
+        {if(s.count(x))
+            return true;
+            
+            s.insert(x);
+        
+        }
+        return false;
+        
+        
+    }
+};
