@@ -1,0 +1,30 @@
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* p1, ListNode* p2) {
+
+    ListNode* newnode=new ListNode();
+        ListNode* head=newnode;
+        
+        while(p1!=NULL and p2!=NULL)
+        {
+            if(p1->val>p2->val)
+            {
+                newnode->next=p2;
+                p2=p2->next;
+                newnode=newnode->next;
+            }
+            else
+            {
+                newnode->next=p1;
+                p1=p1->next;
+                newnode=newnode->next;
+            }
+            
+        }
+        
+        newnode->next=p1?p1:p2;
+        
+        return head->next;
+        
+    }
+};

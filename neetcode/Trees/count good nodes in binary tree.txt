@@ -1,0 +1,29 @@
+
+class Solution {
+public:
+    int count=0;
+    
+    void dfs(TreeNode* root,int maxi)
+    {
+        if(!root)
+            return;
+        
+        
+        maxi=max(maxi,root->val);
+        
+        if(root->val>=maxi)
+            count++;
+        
+        dfs(root->left,maxi);
+        dfs(root->right,maxi);
+        
+    }
+    
+    int goodNodes(TreeNode* root) {
+        if(root==NULL)
+            return 0;
+        
+        dfs(root,root->val);
+        return count;
+    }
+};

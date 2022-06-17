@@ -1,0 +1,60 @@
+class Solution {
+public:
+     bool hasCycle(ListNode *head) {
+       map<ListNode*,int> mapper;
+         
+       while(head!=NULL)
+       {
+           if(mapper[head])//instead you can do mapper.count(head)  .  the count(head) will return 1 if aready present or 0 if it is the first time.
+               return true;
+           
+           mapper[head]++;
+           head=head->next;
+       }
+         return false;
+    }
+};
+
+
+
+
+
+
+
+
+
+//MEMORY EFFICIENT SOLUTION
+class Solution {
+public:
+    
+    
+     bool hasCycle(ListNode *head) {
+       ListNode* slow=head;
+         ListNode* fast=head;
+         
+        while(fast && fast->next)
+        {
+            fast=fast->next->next;
+            slow=slow->next;
+            if(fast==slow)
+                return true;
+        }
+         
+         return false;
+         
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
