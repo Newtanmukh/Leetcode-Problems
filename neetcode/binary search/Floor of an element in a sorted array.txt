@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+
+#include <iostream>
+
+using namespace std;
+
+ int FloorElementIndex(vector<int>& nums, int target) {
+              int res=-1;
+              int low=0;
+              int high=nums.size()-1;
+              
+        
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            
+            if(nums[mid]==target)
+            {
+                return mid;
+            }
+            else if(nums[mid]>target)
+            {
+                
+                high=mid-1;
+            }
+            else{
+                res=mid;
+                low=mid+1;
+            }
+        }
+            
+        
+              
+        return res;
+    }
+
+
+
+int main()
+{
+    
+    vector<int> p = {-11,-7,-4,-2,-1,-1,-1,-1,0,3,5,9,12,24,25,29,31,37};
+   // vector<int> p = {45,31,29,25,24,12,9,5,3,0,-1,-4,-9,-15,-18,-23};
+    int target=10;
+    
+    int index=FloorElementIndex(p, target);
+    
+    cout<<"Floor Element is : "<<p[index]<<endl;
+    
+    return 0;
+}

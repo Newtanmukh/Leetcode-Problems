@@ -1,0 +1,1 @@
+just find the floor and the ceil. find the minimum of the absolute difference between this and the key. thats the answer.

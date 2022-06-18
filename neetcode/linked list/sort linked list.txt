@@ -1,0 +1,30 @@
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+      
+        vector<int>p;
+        
+        ListNode* ok=head;
+        
+        while(ok)
+        {
+            p.push_back(ok->val);
+            ok=ok->next;
+        }
+        
+        sort(p.begin(),p.end());
+        
+        ListNode* node;
+        node=head;
+        
+         for(auto x:p)
+        {
+            node->val=x;
+            node=node->next;
+        }
+        return head;
+        
+        
+        
+    }
+};

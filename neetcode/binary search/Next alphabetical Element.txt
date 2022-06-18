@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+
+#include <iostream>
+
+using namespace std;
+
+ int CeilElementIndex(vector<char>& nums, char target) {
+              int res=-1;
+              int low=0;
+              int high=nums.size()-1;
+              
+        
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            
+            if(nums[mid]==target)
+            {
+                return mid;
+            }
+            else if(nums[mid]>target)
+            {
+                res=mid;
+                high=mid-1;
+            }
+            else{
+                
+                low=mid+1;
+            }
+        }
+            
+        
+              
+        return res;
+    }
+
+
+
+int main()
+{
+    
+    vector<char> p = {'a','b','d','g','h','k','n'};
+   // vector<int> p = {45,31,29,25,24,12,9,5,3,0,-1,-4,-9,-15,-18,-23};
+    int target='i';
+    
+    int index=CeilElementIndex(p, target);
+    
+    cout<<"The element just greater than this is : "<<p[index]<<endl;
+    
+    return 0;
+}
