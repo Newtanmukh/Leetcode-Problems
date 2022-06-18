@@ -1,0 +1,41 @@
+
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+     
+        if(head==NULL)
+            return head;
+        
+        ListNode* traverse=head;
+        
+        vector<int>odd,even;
+        
+        int i=0;
+        
+        while(traverse)
+        {
+            if(i%2==0)
+             odd.push_back(traverse->val);
+            else
+                even.push_back(traverse->val);
+            i++;
+            traverse=traverse->next;
+        }
+        
+        ListNode* node=head;
+        
+        for(auto x:odd)
+        {
+            node->val=x;
+            node=node->next;
+        }
+        
+        for(auto x:even)
+        {
+            node->val=x;
+            node=node->next;
+        }
+        
+        return head;
+    }
+};

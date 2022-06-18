@@ -1,0 +1,42 @@
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        ListNode* ret=head;
+        ListNode* node=head;
+        
+        vector<int>less,big;
+        
+        while(node)
+        {
+            if(node->val<x)
+                less.push_back(node->val);
+            else
+                big.push_back(node->val);
+            
+            node=node->next;
+        }
+        
+        ListNode* traverse=head;
+        
+        int i;
+        i=0;
+        
+        while(i<less.size())
+        {
+            traverse->val=less[i];
+            traverse=traverse->next;
+            i++;
+        }
+        
+        i=0;
+        
+        while(i<big.size())
+        {
+            traverse->val=big[i];
+            traverse=traverse->next;
+            i++;
+        }
+        return head;
+        
+    }
+};

@@ -1,0 +1,32 @@
+class MyHashSet {
+public:
+    
+    set<int>s;
+    
+    MyHashSet() {
+          
+    }
+    
+    void add(int key) {
+        if(s.find(key) == s.end())
+        {
+          s.insert(key);
+        }
+    }
+    
+    void remove(int key) 
+    {
+        if(s.find(key) != s.end())
+        {
+            s.erase(key);
+        }
+    }
+    
+    bool contains(int key) {
+       if(s.find(key)!=s.end())
+           return true;
+        else
+            return false;
+    }
+};
+
