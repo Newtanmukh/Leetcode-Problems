@@ -8,7 +8,7 @@ element does not exist : myset.find(k) == myset.end()
 
 MAP :
 
-insert element : map[key]=value
+insert element : map[key]=value 	OR 	map.insert(make_pair(key,value))
 check if key exists : mapper.count(key)
 delete kay and value pair : mapper.erase(key)
 
@@ -16,3 +16,4 @@ delete kay and value pair : mapper.erase(key)
 VECTOR :
 initialize a 1D vector : vector<int> vec(n,0)    =   this will create a 1 D vector of size n and will initialzie all the values with 0.
 initialize a 2D vector : vector<int> vec(m,vector<int>(n,0))     =      this will create a 2 D vector of size m by n, m rows with each row containing n values. each value being initialized to 0.
+vec.clear()      = 	free the vector.

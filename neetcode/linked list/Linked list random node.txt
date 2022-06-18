@@ -1,0 +1,43 @@
+
+class Solution {
+public:
+    
+    ListNode* node;
+    
+    Solution(ListNode* head) {
+        node=head;
+    }
+    
+    int getcount(ListNode* ptr)
+    {
+        int count=0;
+        while(ptr)
+        {
+            count++;
+            ptr=ptr->next;
+        }
+        return count;
+    }
+    
+    int getRandom() {
+        
+        int size=getcount(node);
+        
+        int x=rand()%size;
+        
+        ListNode* traverse=node;
+        
+        while(x--)
+        {
+            traverse=traverse->next;
+        }
+        return traverse->val;
+        
+    }
+};
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution* obj = new Solution(head);
+ * int param_1 = obj->getRandom();
+ */

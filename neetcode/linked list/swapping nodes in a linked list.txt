@@ -1,0 +1,43 @@
+
+class Solution {
+public:
+    ListNode* swapNodes(ListNode* head, int k) {
+        
+        if(head==NULL||head->next==NULL)
+            return head;
+        
+        vector<int>p;
+        
+        ListNode* ok=head;
+        
+        int count=0;
+        
+        while(ok)
+        {
+            p.push_back(ok->val);
+            ok=ok->next;
+            count++;
+        }
+        cout<<count<<endl;
+        
+     
+        
+        swap(p[k-1],p[count-k]);
+        
+        ListNode* iterator;
+        iterator=head;
+        
+        int i=0;
+        
+        while(iterator)
+        {
+            iterator->val=p[i];
+            iterator=iterator->next;
+            i++;
+        }
+        
+        return head;
+        
+        
+    }
+};
