@@ -1,0 +1,6 @@
+SET :
+
+insert element : s.insert(k)
+delete element : s.erase(k)
+check if the element exists : myset.find(k) != myset.end()
+element does not exist : myset.find(k) == myset.end()

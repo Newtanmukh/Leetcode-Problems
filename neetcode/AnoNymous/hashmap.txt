@@ -1,0 +1,27 @@
+class MyHashMap {
+public:
+    
+    map<int,int>mapper;
+    
+    MyHashMap() {
+        
+    }
+    
+    void put(int key, int value) {
+        mapper[key]=value;
+    }
+    
+    int get(int key) {
+        if(mapper.count(key))
+        return mapper[key];
+        
+        return -1;
+    }
+    
+    void remove(int key) {
+        if(mapper.count(key))
+        {
+            mapper.erase(key);
+        }
+    }
+};
