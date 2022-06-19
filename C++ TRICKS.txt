@@ -17,3 +17,10 @@ VECTOR :
 initialize a 1D vector : vector<int> vec(n,0)    =   this will create a 1 D vector of size n and will initialzie all the values with 0.
 initialize a 2D vector : vector<int> vec(m,vector<int>(n,0))     =      this will create a 2 D vector of size m by n, m rows with each row containing n values. each value being initialized to 0.
 vec.clear()      = 	free the vector.
+
+
+STACK :
+stack.push() : will put an element to the end.
+stack.pop() : will pop the element from the top
+stack . top() : will return the topmost element.
+
