@@ -1,0 +1,45 @@
+class MyQueue {
+public:
+    
+    stack<int>p;
+    stack<int>q;
+    
+    void push(int x) {
+        while(q.size()>0)
+        {
+            int y=q.top();
+            q.pop();
+            p.push(y);
+        }
+        
+        p.push(x);
+    }
+    
+    int pop() {
+        while(p.size()>0)
+        {
+            int x=p.top();
+            p.pop();
+            q.push(x);
+        }
+        int ret=q.top();
+        q.pop();
+        return ret;
+    }
+    
+    int peek() {
+         while(p.size()>0)
+        {
+            int x=p.top();
+             p.pop();
+            q.push(x);
+        }
+        
+        return q.top();
+    }
+    
+    bool empty() {
+        return p.size()+q.size()==0?true:false;
+    }
+};
+
