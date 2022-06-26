@@ -1,0 +1,38 @@
+//it is just the question :  partition into two subsets such that difference is minimum.
+
+class Solution {
+public:
+    int lastStoneWeightII(vector<int>& nums) {
+        
+        
+        int sum=0;
+        for(auto x:nums)
+            sum=sum+x;
+        
+        bool dp[nums.size()+1][sum+1];
+        
+        for(int i=0;i<nums.size()+1;i++)
+            dp[i][0]=true;
+        
+        for(int i=1;i<=sum;i++)
+            dp[0][i]=false;
+        
+        
+        for(int i=1;i<=nums.size();i++)
+            for(int j=1;j<=sum;j++)
+            {
+                if(j<nums[i-1])
+                    dp[i][j]=dp[i-1][j];
+                else
+                    dp[i][j]=dp[i-1][j-nums[i-1]] or dp[i-1][j];
+            }
+        
+        for(int i=sum/2;i>=0;i--)
+        {
+            if(dp[nums.size()][i]==true)
+                return sum-2*i;
+        }
+        return -1;
+        
+    }
+};

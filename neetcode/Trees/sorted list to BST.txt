@@ -1,0 +1,26 @@
+class Solution {
+public:
+    
+    TreeNode* helper(vector<int>p,int low,int high)
+    {if(low<=high)
+    {int mid=low+(high-low)/2;
+        
+        TreeNode* newnode=new TreeNode(p[mid]);
+        newnode->left=helper(p,low,mid-1);
+    newnode->right=helper(p,mid+1,high);
+    return newnode;
+    }
+    return NULL;
+    }
+    
+    
+    TreeNode* sortedListToBST(ListNode* head) {
+        vector<int> p;
+        
+        while(head)
+        {p.push_back(head->val);
+        head=head->next;}
+        
+        return helper(p,0,p.size()-1);
+    }
+};

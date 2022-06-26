@@ -1,0 +1,19 @@
+class Solution {
+public:
+    void reverseinorder(TreeNode* root,int &sum)
+    {
+        if(!root)
+            return;
+        
+        reverseinorder(root->right,sum);
+        sum+=root->val;
+        root->val=sum;
+        reverseinorder(root->left,sum);
+    }
+    
+    TreeNode* bstToGst(TreeNode* root) {
+        int sum=0;
+        reverseinorder(root,sum);
+        return root;
+    }
+};

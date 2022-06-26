@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+// Input:
+// Values (stored in array `v`)
+// Weights (stored in array `w`)
+// Total number of distinct items `n`
+// Knapsack capacity `W`
+int knapsack(vector<int>v, vector<int>w,  int W)
+{    
+   int n=v.size();
+   int a[n+1][W+1];
+   
+   
+   
+   //when i=0, it means that we just cannot fill our bucket irrespective of however heavy it might be. this is because, there are no weight at all !
+   for(int i=0;i<=W;i++)
+   a[0][i]=0;
+   
+   
+   for(int i=1;i<=n;i++)
+   for(int j=0;j<=W;j++)
+   {
+       
+       if(w[i-1]>j)
+       {
+           a[i][j]=a[i-1][j];
+       }
+       else
+       {
+          a[i][j]=max(a[i-1][j],a[i-1][j-w[i-1]]+v[i-1]); 
+       }
+   }
+   
+   return a[n][W];
+}
+ 
+// 0–1 Knapsack problem
+int main()
+{
+    // input: a set of items, each with a weight and a value
+    vector<int>v = { 20, 5, 10, 40, 15, 25 };
+    vector<int>w = { 1, 2, 3, 8, 7, 4 };
+ 
+    // knapsack capacity
+    int W = 10;
+ 
+
+ 
+    cout << "Knapsack value is " << knapsack(v, w,  W);
+ 
+    return 0;
+}

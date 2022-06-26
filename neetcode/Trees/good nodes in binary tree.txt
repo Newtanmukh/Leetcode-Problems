@@ -1,0 +1,28 @@
+class Solution {
+int good = 0;
+map<TreeNode*, int> umap;
+
+public:
+    
+    void DFS(TreeNode* root, int mx,int& p)
+{
+        if(root==NULL)
+        return;
+        
+    if(root->val>=mx)
+        p++;
+        
+        DFS(root->left,max(root->val,mx),p);
+        DFS(root->right,max(root->val,mx),p);
+        
+        
+        
+}
+
+
+    int goodNodes(TreeNode* root) {
+        int good=0;
+        DFS(root,root->val,good);
+        return good;
+    }
+};

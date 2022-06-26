@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        
+      int a[amount+1];
+        
+       int i;
+      
+   
+         a[0]=0;
+        for(i=1;i<amount+1;i++)
+        {     a[i]=INT_MAX-1;
+              //we are assuming at first that, it is not even possible to generate a combination which equals to this particular amount of money.
+           for(auto x:coins)
+           {
+               if(i-x>=0)
+               {
+                   a[i]=min(a[i],a[i-x]+1);
+               }
+           }
+               
+            
+        }
+        cout<<INT_MAX<<endl;
+        if(a[amount]==2147483646)
+            return -1;
+        return a[amount];
+ 
+    }
+};

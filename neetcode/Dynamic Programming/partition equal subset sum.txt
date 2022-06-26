@@ -1,0 +1,42 @@
+class Solution {
+public:
+    bool canPartition(vector<int>& nums) {
+        int sum=0;
+        
+        for(auto x:nums)
+            sum=sum+x;
+        
+        if(sum%2)
+            return false;
+        
+        
+        //Here,a[i][j] represents that, if we can get a sum of j using the i coins. so if sum=0, then we can easily get it by using selecting no coins out of the i coins at all. similarly, if i=0, then it means that we have no coins at all, and we wish to get a sum>0. this is never possible. so this is false. so see this initialization for the reference.
+        
+        bool a[nums.size()+1][(sum/2) +1];
+        int x=sum/2;
+        
+        for(int i=1;i<x+1;i++)
+        {
+            a[0][i]=false;
+        }
+        
+        for(int i=0;i<=nums.size();i++)
+        {
+            a[i][0]=true;
+        }
+        
+        
+        for(int i=1;i<=nums.size();i++)
+            for(int j=1;j<=x;j++)
+            {
+                if(j>=nums[i-1])
+                    a[i][j]=a[i-1][j]||a[i-1][j-nums[i-1]];
+                else
+                    a[i][j]=a[i-1][j];
+            }
+        
+        return a[nums.size()][x];
+        
+        
+    }
+};
