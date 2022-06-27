@@ -1,0 +1,17 @@
+ int longestSubsequence(int N, int nums[])
+    {
+        vector<int>lis(N,1); 
+
+	 
+
+
+	for (int i = 1; i < N; i++ ) 
+	{ 
+		
+		for (int j = 0; j < i; j++ ) 
+			if ( nums[i]==nums[j]-1 || nums[i]==nums[j]+1 ) 
+				lis[i] = max(lis[i],lis[j] + 1); //lis[i] denotes the maximum subsequence upto i including index i.
+	} 
+	return *max_element(lis.begin(),lis.end());
+	
+    }

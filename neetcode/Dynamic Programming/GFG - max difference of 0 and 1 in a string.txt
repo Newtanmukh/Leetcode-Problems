@@ -1,0 +1,27 @@
+	int maxSubstring(string s)
+	{
+	    int curr=0,sum=0;
+	    vector<int> nums(s.length(),0);
+	    
+	    for(int i=0;i<s.length();i++)
+	    {
+	        s[i]=='0'?nums[i]=1:nums[i]=-1;   
+	    }
+	    
+	    vector<int> dp(nums.size(),0);
+	    
+	    dp[0]=nums[0];
+	    
+	    int maxi=0;
+	    maxi=max(maxi,dp[0]);
+	    
+	    for(int i=1;i<s.length();i++)
+	    {
+	        dp[i]=max(dp[i-1]+nums[i],nums[i]);
+	        maxi=max(maxi,dp[i]);
+	    }
+	    if(maxi==0)
+	    return -1;//if all characters in the string are 1, then we will have answer as -1, since in that case the shortest substring can be just a '1'.
+	    return maxi;
+	    
+	}

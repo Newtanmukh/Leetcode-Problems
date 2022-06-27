@@ -1,0 +1,18 @@
+int maxSumIS(int a[], int n)  
+	{  
+	   vector<int> vec;
+	   
+	   for(int i=0;i<n;i++)
+	   vec.push_back(a[i]);
+	   
+	   for(int i=1;i<n;i++)
+	        for(int j=0;j<i;j++)
+	            {
+	                if(a[i]>a[j])
+	                vec[i]=max(vec[i],vec[j]+a[i]);//vec[i] stores whatever was the maximum sum was there till the index i.
+	            }
+	            
+	  return *max_element(vec.begin(),vec.end());          
+	        
+	   
+	}  

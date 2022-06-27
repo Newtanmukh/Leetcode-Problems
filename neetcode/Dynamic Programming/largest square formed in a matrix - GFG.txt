@@ -1,0 +1,28 @@
+int maxSquare(int n, int m, vector<vector<int>> mat){
+        vector<vector<int>>grid(mat.size(),vector<int>(mat[0].size(),0));
+        
+        int row=mat.size();
+        int col=mat[0].size();
+        int maxi=0;
+        
+        for(int i=0;i<row;i++)
+        grid[i][0]=mat[i][0],maxi=max(maxi,mat[i][0]);
+        
+        for(int i=0;i<col;i++)
+        grid[0][i]=mat[0][i],maxi=max(maxi,mat[0][i]);
+        
+        
+        for(int i=1;i<row;i++)
+            for(int j=1;j<col;j++)
+                {   if(mat[i][j]==1)
+                    grid[i][j]=1+min(mat[i-1][j],min(mat[i][j-1],mat[i-1][j-1]));
+                    else
+                    grid[i][j]=0;
+                    
+                    maxi=max(maxi,grid[i][j]);
+                }
+                
+                return maxi;
+                
+        
+    }
