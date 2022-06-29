@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int sum=0;
+    
+    void reverse_inorder(TreeNode* root)
+    {
+        if(!root)
+            return;
+        
+        reverse_inorder(root->right);
+        sum=sum+root->val;
+        root->val=sum;
+        reverse_inorder(root->left);
+    }
+    
+    TreeNode* bstToGst(TreeNode* root) {
+        reverse_inorder(root);
+        return root;
+        
+    }
+};

@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int maxi=0;
+    
+    int finddia(TreeNode* root)
+    {
+       if(!root)
+           return 0;
+        
+        int left=finddia(root->left);
+        int right=finddia(root->right);
+        
+        maxi=max(maxi,left+right);
+        
+        return 1+max(left,right);
+    }
+    
+  
+    
+    int diameterOfBinaryTree(TreeNode* root) {
+       int x=finddia(root);
+        return maxi;
+    }
+};
