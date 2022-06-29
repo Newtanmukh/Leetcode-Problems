@@ -1,0 +1,27 @@
+class Solution{
+public:
+    int count=0;
+    
+    void dfs(Node* root,int l,int r)
+    {
+        if(!root)
+        return;
+        
+        if(root->data<=r and l<=root->data)
+        {count = count+1;
+        dfs(root->left,l,r);
+        dfs(root->right,l,r);
+        }
+        else if(root->data <l)
+        dfs(root->right,l,r);
+        else
+        dfs(root->left,l,r);
+        
+        
+    }
+    int getCount(Node *root, int l, int h)
+    {
+       dfs(root,l,h);
+       return count;
+    }
+};
