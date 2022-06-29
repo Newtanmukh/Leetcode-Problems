@@ -1,0 +1,22 @@
+
+class Solution {
+public:
+
+    TreeNode* searchBST(TreeNode* root, int key)
+{
+        //means that, we have reached such a node while searching and that now we cant dig further and that the node which we are searching for, just does not exist.
+    if(root==NULL)
+        return NULL;
+        
+        if(root->val==key)
+            return root;
+        
+        if(root->val<key)
+            return searchBST(root->right,key);
+        
+        return searchBST(root->left,key);
+        
+        
+}
+    
+};

@@ -1,0 +1,43 @@
+// Always use inorder for this question.
+
+
+
+
+class Solution{
+  public:
+    
+    vector<int>p;
+    
+    void preorder(Node* root)
+    {
+        if(!root)
+        return;
+        preorder(root->left);
+        p.push_back(root->data);
+        
+        
+        preorder(root->right);
+    }
+    
+    int i=0;
+    void pre(Node* root)
+    {
+        if(!root)
+        return;
+        pre(root->left);
+        root->data=p[i];
+        i++;
+        
+        pre(root->right);
+    }
+    
+    
+    Node *binaryTreeToBST (Node *root)
+    {
+        preorder(root);
+        sort(p.begin(),p.end());
+        pre(root);
+        return root;
+        
+    }
+};
