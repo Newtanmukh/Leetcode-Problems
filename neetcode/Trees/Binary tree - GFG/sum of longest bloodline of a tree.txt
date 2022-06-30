@@ -1,0 +1,28 @@
+class Solution
+{
+public:
+
+    void dfs(Node* root,int &maxi,int count,int sum,int &finalsum)
+    {
+        if(!root)
+        return;
+        
+        sum+=root->data;
+        
+        count++;
+        if(count>=maxi)
+        {finalsum=max(sum,finalsum);
+            maxi=count;
+        }
+        
+        dfs(root->left,maxi,count,sum,finalsum);
+        dfs(root->right,maxi,count,sum,finalsum);
+    }
+    int sumOfLongRootToLeafPath(Node *root)
+    {
+       int maxi=0,finalsum=0,sum=0,count=0;
+       
+       dfs(root,maxi,count,sum,finalsum);
+       return finalsum;
+    }
+};

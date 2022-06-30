@@ -1,0 +1,42 @@
+ vector<int> rightView(Node *root)
+    {
+       vector<int>ans;
+if(!root)
+return ans;
+
+vector<vector<int>>p;
+
+queue<Node*>q;
+q.push(root);
+
+while(!q.empty())
+{
+    int size=q.size();
+    vector<int>level;
+    for(int i=0;i<size;i++)
+    {
+        Node* front=q.front();
+        q.pop();
+        
+        if(front->left)
+        {
+            q.push(front->left);
+        }
+        
+        if(front->right)
+        {
+            q.push(front->right);
+        }
+        
+        level.push_back(front->data);
+    }
+    p.push_back(level);
+}
+
+for(auto x:p)
+{
+    ans.push_back(x[x.size()-1]);
+}
+
+return ans;// Your Code here
+    }

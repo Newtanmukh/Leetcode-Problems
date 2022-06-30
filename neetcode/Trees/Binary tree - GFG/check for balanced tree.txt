@@ -1,0 +1,23 @@
+class Solution{
+    public:
+    //Function to check whether a binary tree is balanced or not.
+    bool ans=true;
+    int check(Node* root)
+    {
+        if(!root)
+        return 0;
+        
+        int left=check(root->left);
+        int right=check(root->right);
+        
+        if(abs(left-right)>1)
+        ans=false;
+        
+        return 1+max(left,right);
+    }
+    bool isBalanced(Node *root)
+    {
+        check(root);
+        return ans;
+    }
+};

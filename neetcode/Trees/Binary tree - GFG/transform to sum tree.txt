@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    
+    int transform(Node* root)
+    {
+       if(!root)
+       return 0;
+       
+       int left=transform(root->left);
+       int right=transform(root->right);
+       
+       int return_this_data=root->data;
+       root->data=left+right;
+       
+       
+       return return_this_data+left+right;
+    }
+    
+    void toSumTree(Node *root)
+    {
+      int x=transform(root);
+   
+    }
+};
