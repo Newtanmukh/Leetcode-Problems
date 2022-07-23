@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+void dfs(vector<vector<char>>&grid,vector<vector<bool>>&visited,int x,int y)
+{
+  if(x>=grid.size()||x<0||y>=grid[0].size()||y<0)
+    return;
+
+  if(grid[x][y]=='#'||visited[x][y]==true)
+    return;
+  visited[x][y]==true;
+
+  
+  dfs(grid,visited,x+1,y);
+  dfs(grid,visited,x-1,y);
+  dfs(grid,visited,x,y+1);
+  dfs(grid,visited,x,y-1);
+  return;
+  
+}
+
+int main() {
+  int n,m;
+  cin>>n>>m;
+int count=0;
+  vector<vector<char>> grid(n,vector<char>(m,'.'));
+   vector<vector<bool>>visited(n,vector<bool>(m,false)) ;
+  
+  char c;
+  for(int i=0;i<n;i++)
+    for(int j=0;j<m;j++)
+      {
+        cin>>c;
+        grid[i][j]=c;
+      }
+for(int i=0;i<n;i++)
+    for(int j=0;j<m;j++)
+      {
+        if(grid[i][j]=='.' && visited[i][j]==false)
+        {
+          count++;
+          dfs(grid,visited,i,j);
+        }
+      }
+
+  cout<<count<<endl;
+}

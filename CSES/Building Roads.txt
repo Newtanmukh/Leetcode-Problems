@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<bool>visited(100001,false);
+
+vector<int>city[100001];
+
+void dfs(int x)
+{
+  if(visited[x]==true)
+    return;
+visited[x]=true;
+  
+  for(int i=0;i<city[x].size();i++)
+    {
+      if(visited[city[x][i]]==false)
+      {
+        dfs(city[x][i]);
+      }
+        
+    }
+  
+}
+
+
+int main()
+{
+int n,m;
+  cin>>n>>m;
+
+  int x,y;
+  while(m--)
+    {
+      cin>>x>>y;
+      city[x].push_back(y);
+      city[y].push_back(x);     
+    }
+  vector<int>road;
+  int k=0;
+  
+  for(int i=1;i<=n;i++)
+    {
+      if(!visited[i])
+      {
+        dfs(i);
+        k++;
+        road.push_back(i);
+      }
+    }
+  cout<<k-1<<endl;
+  
+  for(int i=0;i<road.size()-1;i++)
+    {
+      cout<<road[i]<<" "<<road[i+1]<<endl;
+    }
+}

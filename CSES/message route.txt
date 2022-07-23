@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<bool>visited(200001,false);
+vector<int>city[200001];
+vector<int>parent(200001,-1);
+vector<int>dist(200001,0);
+queue<int>q;
+
+int main()
+{
+  int n,m;
+  cin>>n>>m;
+
+  int x,y;
+  
+  while(m--)
+    {
+    cin>>x>>y;
+      city[x].push_back(y);
+      city[y].push_back(x);
+    }
+
+  q.push(1);
+  visited[1]=true;
+  
+  
+  while(!q.empty())
+    {
+      int node=q.front();
+      q.pop();
+      
+      for(auto y:city[node])
+        {
+          if(visited[y]==false)
+          {
+            cout<<y<<endl;
+            dist[y]=dist[node]+1;
+            visited[y]=true;
+            parent[y]=node;
+            q.push(y);           
+          }
+        }
+        
+    }
+
+  if(visited[n]==false)
+  {
+    cout<<"IMPOSSIBLE"<<endl;
+    return 0;
+  }
+
+  
+  int t=n;
+  vector<int>ans;
+  
+  while(parent[t]!=-1)
+    {
+      ans.push_back(t);
+      t=parent[t];
+    }
+  reverse(ans.begin(),ans.end());
+  cout<<1<<" ";
+  for(auto x:ans)
+    {
+      cout<<x<<" ";
+    }
+}
