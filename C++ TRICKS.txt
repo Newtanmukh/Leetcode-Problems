@@ -11,6 +11,7 @@ MAP :
 insert element : map[key]=value 	OR 	map.insert(make_pair(key,value))
 check if key exists : mapper.count(key)
 delete kay and value pair : mapper.erase(key)
+check the number of key value mappings : map.size()
 
 
 VECTOR :
