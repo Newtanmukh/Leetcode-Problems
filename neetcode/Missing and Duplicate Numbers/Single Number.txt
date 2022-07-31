@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+       int ans=0;
+        
+        int i;
+        for(i=0;i<nums.size();i++)
+        {
+            ans=ans^nums[i];
+        }
+        
+        return ans;
+        
+        // in XOR, for same number x, x XOR x =0. and non zero number x XOR 0 = same number.
+    }
+};

@@ -1,0 +1,22 @@
+int k=3;
+    int start=0;
+    
+    
+    int maxsum=0;
+    
+    int sum=0;
+    
+    for(int i=0;i<k;i++)
+    {
+        sum+=p[i];
+    }
+    
+    maxsum=max(maxsum,sum);
+    
+    for(int j=k;j<p.size();j++)
+    {
+        sum=sum-p[j-k]+p[j];
+        maxsum=max(maxsum,sum);
+    }
+    
+    cout<<"The maximum subarray of size : "<<k<<" is "<<maxsum<<endl;

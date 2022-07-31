@@ -1,0 +1,3 @@
+array / substring questions
+subarray / substring
+window size / condition, like max subarray etc.

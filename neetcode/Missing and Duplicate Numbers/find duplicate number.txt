@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        
+        
+        map<int,int> mp;
+        
+        for(auto x:nums)
+        {
+            if(mp[x]==1)  //the thing is that, if we have already been here once before, then this only is the required number. before this mp[x] can become 2, we will return when it is one itself.
+                return x;
+            else
+                mp[x]++;
+            
+        }
+        return 0;
+        
+    }
+};

@@ -1,0 +1,33 @@
+class Solution{
+public:
+	int search(string pat, string txt) {
+	    int size=pat.size();
+	    
+	    vector<int>original(26,0);
+	    vector<int>current_string(26,0);
+	    
+	    for(auto x:pat)
+	    {
+	        original[x-'a']++;
+	    }
+	    
+	    for(int i=0;i<size;i++)
+	    {
+	        current_string[txt[i]-'a']++;
+	    }
+	    
+	    int count=0;
+	    if(current_string==original)
+	    count++;
+	    
+	    for(int j=size;j<txt.size();j++)
+	    {
+	        current_string[txt[j]-'a']++;
+	        current_string[txt[j-size]-'a']--;
+	        if(current_string==original)
+	        count++;
+	    }
+	    return count;
+	}
+
+};
