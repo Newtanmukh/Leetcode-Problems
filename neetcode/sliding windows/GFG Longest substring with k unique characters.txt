@@ -1,27 +1,40 @@
 class Solution{
   public:
     int longestKSubstr(string s, int k) {
-     unordered_map<char,int> mp;
-       int i = 0;
-       int j = 0;
-       int ans = -1;
-       
-       while(j < s.length()){
-           mp[s[j]]++;
-           
-           while(mp.size() > k){
-               mp[s[i]]--;
-               if(mp[s[i]] == 0) mp.erase(s[i]);//since this entry should NOT be considered.
-               ++i;
-           }
-           
-           if(mp.size() == k){
-               ans = max(ans,(j-i) + 1); 
-           }
-           j++;
-       }
-       
-       return ans;
+    int i=0;
+    int j=0;
+    int ans=-1;
+    unordered_map<char,int>mapper;
+    
+    while(j<s.length())
+    {
+        mapper[s[j]]++;
+        
+        if(mapper.size()>k)//mapper.size() will basically return the number of keys that we have inside this map.
+        {
+            
+        while(mapper.size()>k)
+        {
+            mapper[s[i]]--;
+            if(mapper[s[i]]==0)
+            {
+                mapper.erase(s[i]);//we need to erase this, otherwise this will be considered as a key as well.
+
+            }
+            i++;
+        }
+        
+        }
+        
+        if(mapper.size()==k)
+        {
+            ans=max(ans,j-i+1);
+        }
+        
+        j++;
+   
+    }
+    return ans;
     
     }
 };
