@@ -1,0 +1,45 @@
+ bool cycle(int node,vector<bool>&visited,vector<bool>&stack,vector<int>adj[])
+    {
+        visited[node]=true;
+        stack[node]=true;
+        
+        for(auto neighbour:adj[node])
+        {
+            if(!visited[neighbour])
+            {
+                if(cycle(neighbour,visited,stack,adj))
+                return true;
+            }
+            else if(stack[neighbour]==true)
+            {
+                return true;
+            }
+        }
+        stack[node]=false;
+       return false;
+    }
+    
+	bool isPossible(int V, vector<pair<int, int> >& prerequisites) {
+	   
+	   vector<int>adj[V];
+	   
+	   for(auto edge:prerequisites)
+	   {
+	       adj[edge.second].push_back(edge.first);//directed graph,for doing the second u need to do the first so a edge from second to first
+	       
+	   }
+	   
+	   vector<bool>visited(V,false);
+	   vector<bool>inside_recursion_stack(V,false);
+	   
+	   for(int i=0;i<V;i++)
+	   {
+	       if(visited[i]==false)
+	       {
+	           if(cycle(i,visited,inside_recursion_stack,adj))
+	           return false;
+	       }
+	   }
+	   
+	   return true;
+	}

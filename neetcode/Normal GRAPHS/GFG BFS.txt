@@ -1,0 +1,26 @@
+  vector<int> bfsOfGraph(int V, vector<int> adj[]) {
+        
+       vector<bool>visited(V+1,false);
+       vector<int>final;
+       
+       queue<int>q;
+       //pushing to a queue means that they are like the parent nodes which have alreay been visited,but their children are left.
+       q.push(0);
+       visited[0]=true;
+       while(!q.empty())
+       {
+         int node=q.front();
+          q.pop();
+          final.push_back(node);
+          for(auto x:adj[node])
+          {
+              if(!visited[x])
+              {
+                  visited[x]=true;
+                  q.push(x);
+              }
+          }
+           
+       }
+       return final;
+    }

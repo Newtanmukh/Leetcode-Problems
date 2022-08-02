@@ -1,0 +1,17 @@
+int count=0;
+    
+    void dfs(vector<int>adj[],int node,int d)
+    {
+        if(node==d)
+        {
+            count++;
+            return;
+        }
+        
+        for(auto u:adj[node])
+        dfs(adj,u,d);
+    }
+    int countPaths(int V, vector<int> adj[], int source, int destination) {
+        dfs(adj,source,destination);
+        return count;
+    }

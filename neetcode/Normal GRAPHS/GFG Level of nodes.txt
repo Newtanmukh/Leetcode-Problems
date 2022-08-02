@@ -1,0 +1,30 @@
+int nodeLevel(int V, vector<int> adj[], int X) 
+	{
+	    if(X==0)
+	    return 0;
+	    vector<bool>visited(V,false);
+	    
+	  vector<int>level(V,0);
+	  level[0]=0;
+	  queue<int>q;
+	  visited[0]=true;
+	  q.push(0);
+	  while(!q.empty())
+	  {
+	      int node=q.front();
+	      q.pop();
+	      for(auto y:adj[node])
+	      {
+	          if(!visited[y])
+	          {
+	              level[y]=level[node]+1;
+	              visited[y]=true;
+	              q.push(y);
+	          }
+	          if(y==X)
+	          return level[y];
+	      }
+	  }
+	  return -1;
+	  
+	}

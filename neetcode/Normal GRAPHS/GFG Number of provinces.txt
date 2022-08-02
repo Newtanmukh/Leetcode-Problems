@@ -1,0 +1,89 @@
+int count=0;
+    
+    void dfs(int x,vector<int>adj[],vector<bool>&visited)
+    {
+        if(visited[x]==true)
+        return;
+        
+        visited[x]=true;
+        
+        for(auto j : adj[x])
+        {
+            if(!visited[j])
+            dfs(j,adj,visited);
+        }
+        
+    }
+    
+    int numProvinces(vector<vector<int>> g, int V) {
+      vector<int>adj[V];
+      int row,col;
+      row=g.size();
+      col=g.size();
+      
+      for(int i=0;i<row;i++)
+        for(int j=0;j<row;j++)
+            {
+                if(g[i][j]==1)
+                {
+                    adj[i].push_back(j);
+                    adj[j].push_back(i);
+                }
+            }
+        
+        vector<bool>visited(V,false);
+        
+        for(int i=0;i<V;i++)
+        {
+            if(!visited[i])
+            {
+                count++;
+                dfs(i,adj,visited);
+            }
+        }
+        
+       return count;
+       
+    }
+
+
+
+
+
+
+
+
+
+
+
+//OTHERS SOLUTION
+
+#############################################################################################################################################################################################################
+
+void DFS(int src, vector<bool>& vis, vector<vector<int>>& adj) {
+        vis[src] = true;
+        for (int u : adj[src]) {
+            if (!vis[u]) {
+                DFS(u, vis, adj);
+            }
+        }
+    }
+    int numProvinces(vector<vector<int>> mat, int V) {
+        vector<bool> vis(V, false);
+        vector<vector<int>> adj(V);
+        
+        // convert to adj list and find connected components
+        for (int i = 0; i < V; i++) {
+            for (int j = 0; j < V; j++) {
+                if (mat[i][j] == 1) adj[i].push_back(j);
+            }
+        }
+        int cnt = 0;
+        for (int i = 0; i < V; i++) {
+            if (!vis[i]) {
+                cnt++;
+                DFS(i, vis, adj);
+            }
+        }
+        return cnt;
+    }

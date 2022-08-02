@@ -1,0 +1,7 @@
+k largest/ k smallest   :   this qualifies as a heap problem.
+if we use heap,then we wont have to sort the entire array.
+time complexity from nlogn to nlogk.
+
+smallest : use maxheap
+largest : use minheap
+

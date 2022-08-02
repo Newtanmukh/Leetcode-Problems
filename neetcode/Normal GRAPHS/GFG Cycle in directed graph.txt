@@ -1,0 +1,34 @@
+bool cycle(int x,vector<bool>&visited,vector<bool>&stacks,vector<int>adj[])
+    {
+        visited[x]=true;
+        stacks[x]=true;
+        
+        for(auto y:adj[x])
+        {
+            if(!visited[y])
+            {
+                if(cycle(y,visited,stacks,adj))
+                return true;
+            }
+            else if(stacks[y]==true)
+            {
+                return true;
+            }
+        }
+        stacks[x]=false;
+        return false;
+    }
+   bool isCyclic(int V, vector<int> adj[]) {
+      vector<bool>visited(V,false);
+      vector<bool>stacks(V,false);
+      
+      for(int i=0;i<V;i++)
+      {
+          if(!visited[i])
+          {
+              if(cycle(i,visited,stacks,adj))
+              return true;
+          }
+      }
+      return false;
+   }

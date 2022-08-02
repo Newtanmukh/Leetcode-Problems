@@ -1,0 +1,54 @@
+bool sol(vector<vector<int>>& grid,int n,int i,int j)
+    {
+        if(i>=n ||i<0 ||j>=n| j<0)
+        {
+            return false;
+            
+        }
+        if(grid[i][j]==2)
+        return true;
+        if(grid[i][j]==0)
+        return false;
+        
+        grid[i][j]=0;
+        
+        
+        if(sol(grid,n, i+1, j))
+        return true;
+        
+        if(sol(grid,n, i-1, j))
+        return true;
+        
+        if(sol(grid,n, i, j-1))
+        return true;
+        
+        if(sol(grid,n, i, j+1))
+        return true;
+        
+        return false;
+        
+        
+    }
+    //Function to find whether a path exists from the source to destination.
+    bool is_Possible(vector<vector<int>>& grid) 
+    {
+        //code here
+        int i,j;
+        int n=grid.size();
+        
+        for( i=0;i<n;i++)
+        {
+            
+            for( j=0;j<n;j++)
+            {
+                
+                if(grid[i][j]==1)
+                {
+                    return sol(grid,n, i, j);
+                }               
+            }
+    
+        }
+
+        return false;
+    }

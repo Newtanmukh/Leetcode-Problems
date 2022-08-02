@@ -1,0 +1,12 @@
+int setBits(int N) {
+     int cnt = 0;
+         while(N > 0)
+         {
+             if(N%2 == 1)
+             {
+                 cnt++;
+             }
+             N /= 2;
+         }
+         return cnt;
+    }

@@ -1,0 +1,4 @@
+def reverseWords(self,S):
+        temp=[x for x in S.split('.')]
+        temp.reverse()
+        return ".".join(temp)
