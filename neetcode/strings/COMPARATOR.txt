@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+bool comparator(string &s1,string &s2)
+{
+    if(s1.length()>s2.length())
+    return false;
+    return true;
+}
+
+
+int main()
+{
+    vector<string>s={"str","stx","std","stgf","stgz"};
+    
+    sort(s.begin(),s.end(),comparator);
+    
+    for(auto x:s)
+    cout<<x<<endl;
+}

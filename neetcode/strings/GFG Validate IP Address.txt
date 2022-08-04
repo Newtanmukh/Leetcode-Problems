@@ -1,0 +1,16 @@
+def isValid(s):
+     #code here
+   t = s.split(".")
+   for i in range(len(s)-1):
+       if s[i]=='.'and s[i+1]=='.':   # case like 5055..5055 handled.
+           return 0
+   if len(t)!=4 :   #what if ip were like 9.2.3? this case also handled.
+       return 0
+   for i in range(len(t)):
+       if len(t[i])>1 and (t[i][0]=='0' ):  # 00.02,etc. this is wrong too.
+           return 0
+       if len(t[i])>3 or not t[i].isdigit() :     # 18s.h.27.02
+           return 0
+       if int(t[i])<0 or int(t[i])>255:
+           return 0
+   return 1

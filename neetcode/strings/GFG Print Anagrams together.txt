@@ -1,0 +1,21 @@
+vector<vector<string> > Anagrams(vector<string>& list) {
+        unordered_map<string,vector<string>>mapper;
+        
+        for(auto x:list)
+        {
+            string t=x;
+            sort(t.begin(),t.end());
+            mapper[t].push_back(x);
+        }
+        
+        vector<vector<string>>ans;
+        
+        for(auto x: mapper)
+        {
+            ans.push_back(x.second);
+        }
+        
+        return ans;
+        
+        
+    }

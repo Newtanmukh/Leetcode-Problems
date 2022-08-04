@@ -1,0 +1,35 @@
+ int longestKSubstr(string s, int k) {
+    
+    int i=0;
+    int j=0;
+    int ans=-1;
+    map<int,int>mapper;
+    
+    while(j<s.size())
+    {
+    mapper[s[j]]++;
+    
+    if(mapper.size()>k)
+    {
+        while(mapper.size()>k)
+        {
+            mapper[s[i]]--;
+            if(mapper[s[i]]==0)
+            {
+                mapper.erase(s[i]);
+            }
+            i++;
+        }
+        
+        
+    }
+    
+    if(mapper.size()==k)
+        {
+            ans=max(ans,j-i+1);
+        }
+        j++;
+    }
+    return ans;
+    
+    }

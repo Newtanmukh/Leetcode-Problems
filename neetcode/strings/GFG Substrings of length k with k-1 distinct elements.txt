@@ -1,0 +1,26 @@
+int countOfSubstrings(string s, int k) {
+        
+        map<char,int>mapper;
+        
+        for(int i=0;i<k;i++)
+        {
+            mapper[s[i]]++;
+        }
+        int c=0;
+        if(mapper.size()==k-1)
+        c++;
+        
+        for(int j=k;j<s.size();j++)
+        {
+            mapper[s[j]]++;
+            mapper[s[j-k]]--;
+            
+            if(mapper[s[j-k]]==0)
+            {
+                mapper.erase(s[j-k]);
+            }
+            if(mapper.size()==k-1)
+            c++;
+        }
+        return c;
+    }

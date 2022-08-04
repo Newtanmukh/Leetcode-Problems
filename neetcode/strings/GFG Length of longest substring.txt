@@ -1,0 +1,57 @@
+//This was getting TLE. this is supposed to be the correct code.the correct code which got submitted is below.
+
+int longestUniqueSubsttr(string s){
+        //code
+        int i=0;
+        int ans=-1;
+        int j=0;
+        unordered_map<char,int>mapper;
+        
+        while(j<s.size())
+        {
+        mapper[s[j]]++;
+        if(mapper[s[j]]>1)
+        {
+            while(mapper[s[j]]>1)
+            {
+                mapper[s[i]]--;
+                i++;
+                
+            }
+        }
+        ans=max(ans,j-i+1);
+        j++;
+        }
+        return ans;
+    }
+
+#########################################################################
+
+
+
+//ALLL TEST CASES PASSED.
+
+int longestUniqueSubsttr(string s){
+        //code
+        int i=0;
+        int ans=-1;
+        int j=0;
+        vector<int>mapper(26,0);
+        
+        while(j<s.size())
+        {
+        mapper[s[j]-'a']++;
+        if(mapper[s[j]-'a']>1)
+        {
+            while(mapper[s[j]-'a']>1)
+            {
+                mapper[s[i]-'a']--;
+                i++;
+                
+            }
+        }
+        ans=max(ans,j-i+1);
+        j++;
+        }
+        return ans;
+    }
