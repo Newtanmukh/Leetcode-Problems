@@ -1,0 +1,22 @@
+ int maxi=0;
+    int dia(Node* root)
+    {
+       if(!root)
+           return 0;
+        
+        int left=dia(root->left);
+        int right=dia(root->right);
+        
+        maxi=max(maxi,left+right);
+        
+        return 1+max(left,right);
+    }
+ 
+    
+    
+    
+    int diameter(Node* root) 
+    {
+      int x=dia(root);
+      return maxi+1;
+    }

@@ -1,0 +1,25 @@
+ bool ans=true;
+   int CheckSum(Node* root)
+   {
+       if(!root){return 0;}
+       if(!root->left && !root->right)//since , in this case, the two children are NULL, so it will equate root->data==0+0., which should be be there. so thats why.
+           return root->data;
+       }
+       int lh = CheckSum(root->left);
+       int rh = CheckSum(root->right);
+       int sum = lh+rh;
+       if(sum!=root->data)
+       {
+           ans=false;
+           
+       }
+       
+       return root->data;           /if it were sum of all the roots of the children,we would have returned root->data+left+right .
+   }
+   int isSumProperty(Node *root)
+   {
+       if(!root){return 0;}
+       CheckSum(root);
+       return ans;
+    // Add your code here
+   }

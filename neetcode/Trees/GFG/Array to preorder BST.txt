@@ -1,0 +1,22 @@
+vector<int>v;
+   
+   void dfs(int start,int end,vector<int>nums)
+   {
+       if(start<=end)
+       {
+           int mid=start+(end-start)/2;
+           v.push_back(nums[mid]);
+           dfs(start,mid-1,nums);
+           dfs(mid+1,end,nums);
+       }
+       else if(end>start)
+       {
+           return;
+       }
+   }
+   
+   vector<int> sortedArrayToBST(vector<int>& nums) {
+      dfs(0,nums.size()-1,nums);
+      return v;
+       
+   }

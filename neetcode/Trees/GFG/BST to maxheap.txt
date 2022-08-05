@@ -1,0 +1,29 @@
+    //convert the tree from inorder to postorder tree.
+    int i=0;
+    vector<int>ans;
+    void inorder(Node* root)
+    {
+        if(!root)
+        return;
+        
+        inorder(root->left);
+        ans.push_back(root->data);
+        inorder(root->right);
+    }
+    
+    void maxheap(Node* root)
+    {
+        if(!root)
+        return;
+        
+        maxheap(root->left);
+        maxheap(root->right);
+        root->data=ans[i];
+        i=i+1;
+        
+    }
+    void convertToMaxHeapUtil(Node* root)
+    {
+        inorder(root);
+        maxheap(root);
+    }    

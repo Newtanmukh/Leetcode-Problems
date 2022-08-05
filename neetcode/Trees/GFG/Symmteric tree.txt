@@ -1,0 +1,17 @@
+ bool symm(Node* l,Node* r)
+    {
+      if(l==NULL||r==NULL)
+      return l==r;
+      
+      return l->data==r->data && symm(l->right,r->left) && symm(l->left,r->right);
+    }
+    
+    bool isSymmetric(struct Node* root)
+    {
+        if(root==NULL)
+        return true;
+        if(root->left==NULL && root->right==NULL)
+        return true;
+        
+	    return symm(root->left,root->right);
+    }

@@ -1,0 +1,20 @@
+bool helper_function(Node* root,int min,int max)
+   {
+       if(root==NULL)
+       return true;
+       
+       if(root->data>min and root->data<max)
+       {
+           return helper_function(root->left,min,root->data) and helper_function(root->right,root->data,max);
+       }
+       else
+       {
+           return false;
+       }
+   }
+   
+   bool isBST(Node* root) 
+   {
+       // Your code here
+       return helper_function(root,INT_MIN,INT_MAX);
+   }

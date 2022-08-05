@@ -1,0 +1,17 @@
+ bool isSimilar(Node* root1,Node* root2)
+    {
+        if(root1==NULL||root2==NULL)
+        return root1==root2;
+        else
+        return root1->data==root2->data && isSimilar(root1->left,root2->left) && isSimilar(root1->right,root2->right);
+    }
+    
+    bool isSubTree(Node* t, Node* s) 
+    {
+        if(t==NULL||s==NULL)
+        return s==t;
+
+        
+        return isSimilar(t,s) || isSubTree(t->left,s) || isSubTree(t->right,s);
+        
+    }

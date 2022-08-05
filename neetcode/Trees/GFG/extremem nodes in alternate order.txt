@@ -1,0 +1,45 @@
+   vector<int> ExtremeNodes(Node* root)
+    {
+        queue<Node*>q;
+        q.push(root);
+        vector<vector<int>>ans;
+        
+        while(!q.empty())
+        {
+            int size=q.size();
+            vector<int>level;
+            
+            for(int i=0;i<size;i++)
+            {
+                Node* front=q.front();
+                q.pop();
+                
+                if(front->left)
+                {
+                    q.push(front->left);
+                }
+                
+                if(front->right)
+                {
+                    q.push(front->right);
+                }
+                
+                level.push_back(front->data);
+            }
+            ans.push_back(level);
+        }
+        
+        vector<int>r;
+        for(int i=0;i<ans.size();i++)
+        {
+            if(i%2==0)
+            {
+                r.push_back(ans[i][ans[i].size()-1]);
+            }
+            else
+            {
+                r.push_back(ans[i][0]);
+            }
+        }
+        return r;
+    }

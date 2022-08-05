@@ -1,0 +1,16 @@
+void convert(Node* node)
+    {
+        if(node==NULL)
+        return;
+        
+        Node* left=node->left;
+        node->left=node->right;
+        node->right=left;
+        
+        convert(node->left);
+        convert(node->right);
+    }
+    void mirror(Node* node) {
+        convert(node);
+        
+    }

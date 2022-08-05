@@ -1,0 +1,20 @@
+ //Function to check whether a binary tree is balanced or not.
+    bool ans=true;//by default we assume that the tree if balanced from the start itself.
+    
+    int dfs(Node* root)
+    {
+        if(root==NULL)
+        return 0;
+        
+        int left=dfs(root->left);
+        int right=dfs(root->right);
+        if(abs(left-right)>1)
+        ans=false;
+        
+        return 1+max(left,right);
+    }
+    bool isBalanced(Node *root)
+    {
+        dfs(root);
+        return ans;
+    }

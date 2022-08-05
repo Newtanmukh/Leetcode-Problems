@@ -1,0 +1,45 @@
+ Node* lca(Node* node,int a,int b)
+    {
+        if(node==NULL)
+        return NULL;
+        
+        if(node->data==a||node->data==b)
+        return node;
+        
+        Node* left=lca(node->left,a,b);
+        Node* right=lca(node->right,a,b);
+        
+        if(left==NULL)
+        return right;
+        
+        if(right==NULL)
+        return left;
+        
+        return node;
+    }
+    
+    int first=0;
+    int second=0;
+    
+    void dfs(Node* root,int path_length,int a,int b)
+    {
+        if(!root)
+        return;
+        
+        if(root->data==a)
+        first=path_length;
+        
+        if(root->data==b)
+        second=path_length;
+        
+        dfs(root->left,path_length+1,a,b);
+        dfs(root->right,path_length+1,a,b);
+    }
+    int findDist(Node* root, int a, int b) {
+        //Find the LCA of this tree.
+        //then simply find the distance between this node and the other two nodes and add them.
+        Node* lowest_ancestor=lca(root,a,b);
+        dfs(lowest_ancestor,0,a,b);
+        return first+second;
+        
+    }

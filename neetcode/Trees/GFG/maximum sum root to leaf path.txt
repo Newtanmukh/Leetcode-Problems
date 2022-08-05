@@ -1,0 +1,23 @@
+int maxi=INT_MIN;
+    
+    void dfs(Node* root,int sum)
+    {
+        if(root==NULL)
+        return;
+        
+        if(root->left==NULL and root->right==NULL)
+        {
+            sum=sum + root->data;
+            maxi=max(maxi,sum);
+            return;
+        }
+        sum=sum+root->data;
+        dfs(root->left,sum);
+        dfs(root->right,sum);
+    }
+    
+    int maxPathSum(Node* root)
+    {
+        dfs(root,0);
+        return maxi;
+    }

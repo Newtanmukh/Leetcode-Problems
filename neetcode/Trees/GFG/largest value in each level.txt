@@ -1,0 +1,34 @@
+ vector<int> largestValues(Node* root)
+    {
+        queue<Node*>q;
+        vector<vector<int>>ans;
+        vector<int>p;
+        q.push(root);
+        
+        while(!q.empty())
+        {
+            int size=q.size();
+            vector<int>level;
+            for(int i=0;i<size;i++)
+            {
+                Node* front=q.front();
+                q.pop();
+                if(front->left)
+                {
+                    q.push(front->left);
+                }
+                if(front->right)
+                {
+                    q.push(front->right);
+                }
+                level.push_back(front->data);
+            }
+            ans.push_back(level);
+        }
+        
+        for(auto x:ans)
+        {
+            p.push_back(*max_element(x.begin(),x.end()));
+        }
+        return p;
+    }

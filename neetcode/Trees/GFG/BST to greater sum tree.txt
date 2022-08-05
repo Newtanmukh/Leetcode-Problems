@@ -1,0 +1,19 @@
+ //NOTE,here it is node contains sum of all nodes greate =er than the node. in leetcode,it was sum of greater than the nodes plus the node values itself as well.
+    public:
+    void inorder(Node* root,int &sum)
+    {
+        if(!root)
+        return;
+        inorder(root->right,sum);
+        int x=root->data;
+        root->data=sum;
+        sum=sum+x;
+        inorder(root->left,sum);
+        
+        
+    }
+    void transformTree(struct Node *root)
+    {   int x=0;
+        inorder(root,x);
+        
+    }

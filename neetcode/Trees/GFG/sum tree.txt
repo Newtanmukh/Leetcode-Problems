@@ -1,0 +1,26 @@
+bool ans=true;
+    
+    int dfs(Node* root)
+    {
+        if(!root)
+        return 0;
+        
+        if(!root->left and !root->right)
+        return root->data;
+        
+        int left=dfs(root->left);
+        int right=dfs(root->right);
+        
+        if(root->data!=left+right)
+        ans=false;
+        
+        return left+right+root->data;
+    }
+   
+    bool isSumTree(Node* root)
+    {
+        if(!root)
+        return 1;
+        int x=dfs(root);
+        return ans;
+    }
