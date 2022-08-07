@@ -1,0 +1,14 @@
+bool subArrayExists(int arr[], int n)
+    {
+      int prefix_sum=0;
+      map<int,int>m;
+      
+      for(int i=0;i<n;i++)
+      {
+          prefix_sum=prefix_sum+arr[i];//two ways this was possible,first if the sum of the elements till this was 0, or if this sum has already been found before somewhere.
+          if(prefix_sum==0||m[prefix_sum])
+          return true;
+          m[prefix_sum]++;
+      }
+      return false;
+    }

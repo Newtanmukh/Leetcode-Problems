@@ -1,0 +1,70 @@
+ int binary_search(vector<int>v,int target)
+    {
+    int low=0;
+    int high=v.size()-1;
+    int first=0;
+    int last=0;
+    
+    while(low<=high)
+    {
+    int mid=low+(high-low)/2;
+    if(v[mid]==target)
+    {
+        first=mid;
+        high=mid-1;
+    }
+    else if(v[mid]>target)
+    {
+        high=mid-1;
+    }
+    else
+    {
+        low=mid+1;
+    }
+    }
+    
+    low=0;
+     high=v.size()-1;
+    while(low<=high)
+    {
+        int mid=low+(high-low)/2;
+        if(v[mid]==target)
+        {
+            last=mid;
+            low=mid+1;
+        }
+        else if(v[mid]>target)
+        {
+        high=mid-1;
+        }
+        else
+        {
+        low=mid+1;
+         }
+     }
+     
+    if(v.size()==1)
+    return v[0]==1?1:0;//if this edge case is not handled then it will go to the case just below
+    
+    if(last==first and first==0 )
+    return 0;//basically,all were 0's and thus there was no 1 !!!
+    
+    return last-first+1;//else,just return the number of 1's.
+    }
+    
+	int rowWithMax1s(vector<vector<int> > arr, int n, int m) {
+	    int index=-1;
+	    int max=0;
+	   for(int i=0;i<arr.size();i++)
+	   {
+	       int num=binary_search(arr[i],1);
+	       
+	       
+	       if(num>max)
+	       {
+	           index=i;
+	           max=num;
+	       }
+	   }
+	   return  index;
+	}

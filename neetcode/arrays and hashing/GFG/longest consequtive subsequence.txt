@@ -1,0 +1,33 @@
+ int findLongestConseqSubseq(int a[], int n)
+    {
+      unordered_map<int,bool>m;
+      
+      for(int i=0;i<n;i++)
+      {
+        m[a[i]]=true;    
+      }
+      
+      int len=0;
+      int maxlen=1;
+      
+      for(int i=0;i<n;i++)
+      {
+          if(m[a[i]-1])
+          {//it means that, basically this is not the starting element. or in simple words,it is part of a sequence.
+              
+              continue;
+          }
+          //else, it means that it is indeed the start,so we just iterate to;;
+          int x=a[i];
+          
+          while(m[x])
+          {
+              x++;
+              len++;
+              maxlen=max(len,maxlen);
+          }
+          len=0;
+      }
+      return maxlen;
+      
+    }
