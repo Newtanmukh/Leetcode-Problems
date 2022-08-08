@@ -3,16 +3,19 @@ int countFriendsPairings(int n)
         if(n==1)
         return 1;
         
-        int mod=pow(10,9)+7;
-        
         if(n==2)
         return 2;
         
-        long dp[n+1];
-        dp[0]=0,dp[1]=1,dp[2]=2;
+        vector<long long>dp(n+1,0);
+        dp[0]=0;
+        dp[1]=1;
+        dp[2]=2;
+        int mod=1e9+7;
         
         for(int i=3;i<=n;i++)
-         dp[i]=(dp[i-2]*(i-1)+dp[i-1])%1000000007;
+        {
+            dp[i]=((i-1)*dp[i-2]+dp[i-1])%mod;//either it can pair with one of the (i-1) so that the rest of (i-2) can either pair or remain single, or it can just remain single so that it is dp[i-1]
+        }
         
         return dp[n];
     }
