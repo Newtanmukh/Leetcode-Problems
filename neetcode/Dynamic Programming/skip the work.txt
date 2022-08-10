@@ -1,0 +1,12 @@
+ int minAmount(int A[] , int N)
+    {
+        int dp[N+1];
+      dp[0]=0;
+      dp[1]=A[0];
+      dp[2]=A[1];
+      for(int i=3;i<N+1;i++)
+      {
+          dp[i]=min(dp[i-2]+A[i-1],dp[i-1]+A[i-1]);
+      }
+      return min(dp[N],dp[N-1]);
+    }

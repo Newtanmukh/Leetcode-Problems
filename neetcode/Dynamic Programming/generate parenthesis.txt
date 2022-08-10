@@ -1,0 +1,27 @@
+vector<string> vec;
+    
+    void func(string p,int left,int right,int n)
+    {
+        
+        if(left+right>2*n)
+            return;
+        
+        if(left==right && left==n)
+        { vec.push_back(p);
+        return;}
+        
+        if(left<n)
+            func(p+"(",left+1,right,n);
+        
+        if(right<left)
+            func(p+")",left,right+1,n);
+        
+        
+    }
+    
+    vector<string> generateParenthesis(int n) {
+      
+        string p="";
+        func(p,0,0,n);
+        return vec;
+    }

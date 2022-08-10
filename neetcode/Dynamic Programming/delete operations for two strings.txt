@@ -1,7 +1,7 @@
-  int minDistance(string s, string t) {
+int minDistance(string s, string t) {
       //find the max length of the subsequence. so this will be common in both the strings. rest all characters need to be deleted.
-       int dp[s.size()+1][t.size()+1];
-       
+      int dp[s.size()+1][t.size()+1];
+        
         for(int i=0;i<=s.size();i++)
             for(int j=0;j<=t.size();j++)
             {

@@ -22,7 +22,7 @@ on DP questions :
 For KNAPSACK type problems : 
 the choices should be on x axis.(the denomination of the coin,etc.)
 the thing (weight,target sum) should be on  y axis.
-if limit on the number of occurences, then simply use 2D arry,otherwise only oneD array.
+***if limit on the number of occurences, then simply use 2D arry,otherwise only oneD array.
 Also, for knapsack type of problems, use dp[i-1][j-nums[i-1]] if we can use each element only once,
 dp[i][j-nums[i-1]] if we can use each element any number of times.
 
