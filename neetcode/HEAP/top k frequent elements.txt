@@ -1,0 +1,29 @@
+vector<int> topKFrequent(vector<int>& nums, int k) {
+        
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>minheap;
+        
+        vector<int>ans;
+        
+        map<int,int>mapper;
+        for(auto x:nums)
+        {
+            mapper[x]++;
+        }
+        
+        for(auto x:mapper)
+        {
+            minheap.push(make_pair(x.second,x.first));
+            if(minheap.size()>k)
+                minheap.pop();
+        }
+        
+        while(minheap.size()>0)
+        {
+            pair<int,int>p=minheap.top();
+            minheap.pop();
+            ans.push_back(p.second);
+        }
+        return ans;
+        
+        
+    }

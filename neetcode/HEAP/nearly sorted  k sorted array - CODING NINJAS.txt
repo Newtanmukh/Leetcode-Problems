@@ -1,0 +1,25 @@
+vector < int > nearlySorted(vector < int > nums, int n, int k) {
+    priority_queue<int,vector<int>,greater<int>>minheap;
+    vector<int>ans(nums.size(),0);
+    int j=0;
+    for(int i=0;i<n;i++)
+    {
+        minheap.push(nums[i]);
+        if(minheap.size()>k)
+        {
+            ans[j]=minheap.top();  
+            minheap.pop();
+            j++;
+        }
+    }
+    while(minheap.size()>0)
+    {
+        ans[j]=minheap.top();       
+        minheap.pop();
+        j++;
+    }
+    
+    return ans;
+    
+    
+}

@@ -1,28 +1,23 @@
-class Solution
-{
-    public:
-    vector<int> kLargest(int arr[], int n, int k)
+vector<int> kLargest(int arr[], int n, int k)
     {
         priority_queue<int,vector<int>,greater<int>>minheap;
-         
-         for(int i=0;i<n;i++)
-         {
-             minheap.push(arr[i]);
-             if(minheap.size()>k)
-             {
-                 minheap.pop();
-             }
-         }
-         
-         vector<int>ans;
-         while(minheap.size()>0)
-         {
-             ans.push_back(minheap.top());
-             minheap.pop();
-         }
-         sort(ans.begin(),ans.end());
-         reverse(ans.begin(),ans.end());
-         
+        vector<int>ans;
+        
+        for(int i=0;i<n;i++)
+        {
+            minheap.push(arr[i]);
+            if(minheap.size()>k)
+            minheap.pop();
+        }
+        
+        while(minheap.size()>0)
+        {
+            int x=minheap.top();
+            minheap.pop();
+            ans.push_back(x);
+        }
+        
+        sort(ans.begin(),ans.end());
+        reverse(ans.begin(),ans.end());
         return ans;
     }
-};

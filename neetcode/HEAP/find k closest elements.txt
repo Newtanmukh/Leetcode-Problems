@@ -1,0 +1,23 @@
+ vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        
+        
+        priority_queue<pair<int,int>>maxheap;
+          
+        for(auto e:arr)
+        {
+            maxheap.push(make_pair(abs(e-x),e));
+            if(maxheap.size()>k)
+                maxheap.pop();
+        }
+        
+        vector<int>ans;
+        
+        while(maxheap.size()>0)
+        {
+            pair<int,int>num=maxheap.top();
+            maxheap.pop();
+            ans.push_back(num.second);
+        }
+        sort(ans.begin(),ans.end());
+        return ans;
+    }

@@ -1,0 +1,27 @@
+ vector<vector<int>> kClosest(vector<vector<int>>& points, int k)
+    {
+        
+        priority_queue<pair<int,int>>maxheap;
+        
+        for(int i=0;i<points.size();i++)
+        {
+            maxheap.push(make_pair(points[i][0]*points[i][0]+points[i][1]*points[i][1],i));
+            if(maxheap.size()>k)
+                maxheap.pop();
+        }
+        
+        vector<vector<int>>ans;
+        
+        while(maxheap.size()>0)
+        {
+            pair<int,int>p=maxheap.top();
+            maxheap.pop();
+            int index=p.second;
+            vector<int>temp;
+            temp.push_back(points[index][0]);
+            temp.push_back(points[index][1]);
+            ans.push_back(temp);
+            
+        }
+        return ans;
+    }
