@@ -1,0 +1,50 @@
+
+
+//algorithm is that , basically from the common node all the nodes will be equal. so just position the linkedin lists such that they are at the same index from the begining. after that, traverse the linkedin lists both simultaneously and if you find any common node, then return the node.
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *heada, ListNode *headb) {
+      
+        
+        int sizea=0;
+        int sizeb=0;
+        
+        ListNode* temp;
+        temp=heada;
+        while(temp)
+        {
+            sizea++;
+            temp=temp->next;
+        }
+        
+        temp=headb;
+        
+        while(temp)
+        {
+            sizeb++;
+            temp=temp->next;
+        }
+        
+        if(sizea>sizeb)
+        {
+            int x=sizea-sizeb;
+            while(x--)
+                heada=heada->next;
+        }
+        else
+        {
+            int x=sizeb-sizea;
+            while(x--)
+                headb=headb->next;
+        }
+        
+        while(heada != headb)
+        {
+            heada=heada->next;
+            headb=headb->next;
+        }
+        
+        return heada;
+        
+    }
+};

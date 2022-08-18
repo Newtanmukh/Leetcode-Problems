@@ -1,0 +1,14 @@
+def simplifyPath(self, path):
+        s = []
+        for x in path.split('/'):
+            if x=="": 
+                continue
+            elif x == '.':
+                continue
+            elif x == '..':
+                if len(s)>0:
+                    x=s.pop()
+                    print(x)
+            else:
+                s.append(x)
+        return '/' + '/'.join(s)

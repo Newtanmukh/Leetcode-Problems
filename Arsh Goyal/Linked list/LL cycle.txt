@@ -1,0 +1,40 @@
+bool hasCycle(ListNode *head) {
+       ListNode* fast;
+         ListNode* slow;
+         fast=head;
+         slow=head;
+       while(fast !=NULL and fast->next!=NULL)
+       {
+           slow=slow->next;
+           fast=fast->next->next;
+           if(fast==slow)
+               return true;
+       }
+         return false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bool hasCycle(ListNode *head) {
+      map<ListNode*,int>mapper;
+         
+         while(head!=NULL)
+         {
+             if(mapper[head])
+                 return true;
+             mapper[head]++;
+             head=head->next;
+         }
+         return false;
+    }

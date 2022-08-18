@@ -1,0 +1,10 @@
+int getDecimalValue(ListNode* head) {
+       int n=0;
+        
+        while(head!=NULL)
+        {
+            n=2*n+head->val;
+            head=head->next;
+        }
+        return n;
+    }

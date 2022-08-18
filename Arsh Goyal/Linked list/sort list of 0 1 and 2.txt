@@ -1,0 +1,24 @@
+ ListNode* sortList(ListNode* head) {
+      
+       vector<int>ans;
+        
+        ListNode* ok=head;
+        
+        while(ok)
+        {
+            ans.push_back(ok->val);
+            ok=ok->next;
+        }
+        
+        ListNode* temp=head;
+         sort(ans.begin(),ans.end());
+        
+       for(auto x:ans)
+       {
+           temp->val=x;
+           temp=temp->next;
+       }
+        
+       return head; 
+        
+    }

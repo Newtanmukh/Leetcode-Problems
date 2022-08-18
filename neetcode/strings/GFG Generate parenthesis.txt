@@ -1,0 +1,25 @@
+ public:
+    vector<string>ans;
+    void dfs(string s,int left,int right,int n)
+    {
+    if(left+right>2*n)
+    return;    
+    
+    if(left==right and left==n)    
+    ans.push_back(s);
+    
+    if(left<n)
+    dfs(s+"(",left+1,right,n);
+    
+    if(right<left)
+    dfs(s+")",left,right+1,n);
+    
+    }
+    
+    vector<string> AllParenthesis(int n) 
+    {
+        string res="";
+        dfs(res,0,0,n);
+        return ans;
+        
+    }
