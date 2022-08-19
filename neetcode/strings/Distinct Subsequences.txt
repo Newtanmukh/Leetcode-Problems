@@ -1,0 +1,70 @@
+Given two strings s and t, return the number of distinct subsequences of s which equals t.
+
+
+
+
+
+
+TLE Solution :
+
+
+class Solution {
+public:
+    int dfs(string &s,string &t,int x,int y)
+    {
+        if(y==t.size())
+            return 1;
+        
+        if(x==s.size())
+            return 0;
+        
+        if(s[x]!=t[y])
+            return dfs(s,t,x+1,y);
+        else
+            return dfs(s,t,x+1,y)+dfs(s,t,x+1,y+1);
+    }
+    int numDistinct(string s, string t) {
+        if(s==t)
+            return 1;
+        return dfs(s,t,0,0);
+    }
+};
+
+##############################################################################################################
+
+MEMOIZED SOLUTION :
+
+
+class Solution {
+public:
+    int dp[1001][1001];
+    
+    int dfs(string &s,string &t,int x,int y)
+    {
+        if(dp[x][y]!=-1)
+            return dp[x][y];
+        
+        if(y==t.size())
+            return 1;
+        
+        if(x==s.size())
+            return 0;
+        
+        if(s[x]!=t[y])
+        {
+            dp[x][y]=dfs(s,t,x+1,y);
+            return dp[x][y];
+         }        
+        else
+        { 
+             dp[x][y]=dfs(s,t,x+1,y)+dfs(s,t,x+1,y+1);
+            return   dp[x][y];
+        }
+    }
+    int numDistinct(string s, string t) {
+        if(s==t)
+            return 1;
+        memset(dp,-1,sizeof(dp));
+        return dfs(s,t,0,0);
+    }
+};
