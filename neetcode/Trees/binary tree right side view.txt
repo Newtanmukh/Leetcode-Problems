@@ -1,21 +1,17 @@
-class Solution {
-public:
-
-    vector<int> rightSideView(TreeNode* root) {
+ vector<int> rightSideView(TreeNode* root) {
         
         
-            
-        vector<int> ans;
-        if(!root)
+      vector<int>ans;
+        if(root==NULL)
             return ans;
         
-        
-        queue<TreeNode*>q;
-        
+    queue<TreeNode*>q;
         q.push(root);
         
+        vector<vector<int>>p;
+        
         while(!q.empty())
-        {   
+        {
             int size=q.size();
             vector<int>level;
             
@@ -24,25 +20,24 @@ public:
                 TreeNode* node=q.front();
                 q.pop();
                 
-                if(node->left!=NULL)
+                if(node->left)
                 {
                     q.push(node->left);
                 }
-                
-                if(node->right!=NULL)
+                if(node->right)
                 {
                     q.push(node->right);
                 }
-                
                 level.push_back(node->val);
-                
-            }
-            
-            int last_index=level.size()-1;
-            ans.push_back(level[last_index]);
-            
+            }    
+            p.push_back(level);
+        }
+        
+        for(auto x:p)
+        {
+            ans.push_back(x[x.size()-1]);
         }
         return ans;
         
         
-    }  };
+    }

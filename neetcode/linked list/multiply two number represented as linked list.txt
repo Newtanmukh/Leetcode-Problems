@@ -1,0 +1,41 @@
+ ListNode* addTwoNumbers(ListNode* heada, ListNode* headb) {
+        
+        unsigned long long sum1=0;
+        unsigned long long sum2=0;
+        
+        while(heada)
+        {
+            sum1=sum1*10+heada->val;
+            heada=heada->next;
+        }
+        
+     while(headb)
+        {
+            sum2=sum2*10+headb->val;
+            headb=headb->next;
+        }
+        cout<<sum1<<endl;
+        cout<<sum2<<endl;
+        unsigned long long sum=sum1+sum2;
+        vector<int>ans;
+        
+        if(sum==0) //this will handle the test case when both the LL are NULL, or when both are 0 and thus the sum is also 0, etc etc.
+            ans.push_back(0);
+        
+        while(sum)
+        {
+            ans.push_back(sum%10);
+            sum=sum/10;
+        }
+        reverse(ans.begin(),ans.end());
+        
+        ListNode* head=new ListNode();
+        ListNode* temp=head;
+        
+        for(auto x:ans)
+        {
+            head->next=new ListNode(x);
+            head=head->next;
+        }
+        return temp->next;
+    }

@@ -1,17 +1,19 @@
-class Solution {
-public:
+ int maxi=INT_MIN;
     
+    void dfs(TreeNode* root,int len)
+    {
+        if(!root)
+            return;
+        maxi=max(maxi,len);
+        dfs(root->left,len+1);
+        dfs(root->right,len+1);
+        
+    }
  
-   int maxDepth(TreeNode* root) {
-  
-       if(root==NULL)
-           return 0;
+ int maxDepth(TreeNode* root) {
+     if(!root)
+         return 0;
+    dfs(root,0);
+     return maxi+1;
        
-       int left=maxDepth(root->left);
-       int right=maxDepth(root->right);
-       
-       return 1+max(left,right);
-    
 }
-    
-};

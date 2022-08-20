@@ -1,0 +1,30 @@
+  int maxi=INT_MIN;
+    
+    int max(int a,int b)
+    {
+        return a>b?a:b;
+    }
+  
+    int dfs(TreeNode* root)
+    {
+        if(root==NULL)
+            return 0;
+        
+        int left=dfs(root->left);
+        int right=dfs(root->right);
+        
+        if(left<0)left=0;
+        if(right<0)right=0;
+        
+        maxi=max(maxi,root->val+left+right);
+        
+        return root->val+max(left,right);
+    }
+    
+    int maxPathSum(TreeNode* root) {
+        int x=dfs(root);
+        return maxi;
+        
+        
+        
+    }

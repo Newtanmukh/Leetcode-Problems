@@ -1,0 +1,44 @@
+ Node* lca(Node* root,int a,int b)
+    {
+    if(root==NULL)
+    return root;
+    
+    if(root->data==a||root->data==b)
+    return root;
+    
+    Node* left=lca(root->left,a,b);
+    Node* right=lca(root->right,a,b);
+    
+    if(left==NULL)
+    return right;
+    
+    if(right==NULL)
+    return left;
+    
+    return root;
+    
+    }
+   
+    void search(Node* root,int find,int len,int &p)
+    {
+        if(!root)
+        return;
+        
+        if(root->data==find)
+        {
+            p=len;
+            return;
+        }
+        
+        search(root->left,find,len+1,p);
+        search(root->right,find,len+1,p);
+    }
+    int x=0;
+    int y=0;
+    
+    int findDist(Node* root, int a, int b) {
+        Node* lowestcommonancestor=lca(root,a,b);
+        search(lowestcommonancestor,a,0,x);
+        search(lowestcommonancestor,b,0,y);
+        return x+y;
+    }

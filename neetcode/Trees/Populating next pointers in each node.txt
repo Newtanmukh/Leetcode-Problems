@@ -1,0 +1,52 @@
+    Node* connect(Node* root) {
+        
+      if(root==NULL)
+          return root;
+        
+       queue<Node*>q;
+       q.push(root);
+        
+       vector<vector<Node*>>ans;
+        
+       while(!q.empty())
+       {
+           int size=q.size();
+           vector<Node*>level;
+           
+           for(int i=0;i<size;i++)
+           {
+               Node* front=q.front();
+               q.pop();
+               
+               if(front->left!=NULL)
+               {
+                   q.push(front->left);
+               }
+               
+               if(front->right!=NULL)
+               {
+                   q.push(front->right);
+               }
+               level.push_back(front);
+           }
+           ans.push_back(level);
+       }
+        
+        for(int i=0;i<ans.size();i++)
+        {
+            for(int j=0;j<ans[i].size();j++)
+            {
+                if(j==ans[i].size()-1)
+                {
+                    ans[i][j]->next=NULL;
+                }
+                else
+                {
+                    ans[i][j]->next=ans[i][j+1];
+                }
+            }
+        }
+        
+        return root;
+        
+    }

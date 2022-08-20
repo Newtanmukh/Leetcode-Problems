@@ -1,0 +1,26 @@
+ ListNode* deleteDuplicates(ListNode* head) {
+      
+        map<int,int>mapper;
+        ListNode* temp=head;
+        
+        while(temp)
+        {
+            mapper[temp->val]++;
+            temp=temp->next;
+        }
+        
+        ListNode* newnode=new ListNode();
+        temp=newnode;
+        
+        for(auto x:mapper)
+        {
+            if(x.second==1)
+            {
+                newnode->next=new ListNode(x.first);
+                newnode=newnode->next;
+            }
+        }
+        
+        return temp->next;
+        
+    }

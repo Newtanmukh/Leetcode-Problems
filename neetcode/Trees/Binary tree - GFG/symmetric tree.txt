@@ -1,23 +1,15 @@
-class Solution {
-public:
-    bool isSymmetric(TreeNode* root) {
-       if(!root)
-           return true;
+  bool isSymmetric(TreeNode* root) {
+      if(!root)
+          return true;
         
-        return sym(root->left,root->right);
+      return sym(root->left,root->right);  
     }
    
-    bool sym(TreeNode* left,TreeNode* right)
-    {//left and right here refer to the nodes which are just mirror image of each other.
-        if(left==NULL && right!=NULL)
-            return false;
-        if(left and !right)
-            return false;
-        if(!left && !right)
-            return true;
-        
-        return left->val==right->val && sym(left->left,right->right) and sym(left->right,right->left);
-        
-    }
+   bool sym(TreeNode* left,TreeNode* right)
+   {
+       if(left==NULL || right==NULL)
+           return left==right;
+       
+       return left->val==right->val and sym(left->left,right->right) and sym(left->right,right->left);
+   }
   
-};

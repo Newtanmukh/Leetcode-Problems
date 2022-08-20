@@ -1,55 +1,46 @@
-
-
-//algorithm is that , basically from the common node all the nodes will be equal. so just position the linkedin lists such that they are at the same index from the begining. after that, traverse the linkedin lists both simultaneously and if you find any common node, then return the node.
-class Solution {
-public:
-    ListNode *getIntersectionNode(ListNode *heada, ListNode *headb) {
-        if(heada==NULL||headb==NULL)
-            return NULL;
+  ListNode *getIntersectionNode(ListNode *heada, ListNode *headb) {
+      
+        int len1=0;
+        int len2=0;
+        ListNode* temp=heada;
         
-        ListNode* first=heada;
-        ListNode* second=headb;
-        
-        int length1=0,length2=0;
-        
-        while(first)
+        while(temp)
         {
-            length1++;
-            first=first->next;
+            len1++;
+            temp=temp->next;
+        }
+        temp=headb;
+        while(temp)
+        {
+            len2++;
+            temp=temp->next;
         }
         
-        while(second){
-            length2++;
-            second=second->next;
-        }
         
-        ListNode* x;
-        ListNode* y;
-        x=heada;
-        y=headb;
-        
-        int traverse;
-        if(length1>length2)
-        {traverse=length1-length2;
-        while(traverse--)
-            x=x->next;
+        if(len1>len2)
+        {
+            int x=len1-len2;
+            while(x--)
+            {
+                heada=heada->next;
+            }
         }
         else
-        {traverse=length2-length1;
-        while(traverse--)
         {
-            y=y->next;
-        }
+            int x=len2-len1;
+            while(x--)
+            {
+                headb=headb->next;
+            }
         }
         
-        while(x!=y)
+        while(heada!=headb)
         {
-            x=x->next;
-            y=y->next;
+            heada=heada->next;
+            headb=headb->next;
         }
         
-        return x;
         
+        return heada;
         
     }
-};

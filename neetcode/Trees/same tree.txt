@@ -1,17 +1,9 @@
-class Solution {
-public:
-    bool isSameTree(TreeNode* p, TreeNode* q) {
-        if(p==NULL and q==NULL)
-            return true;
+ bool isSameTree(TreeNode* p, TreeNode* q) {
+      
+        if(p==NULL||q==NULL)
+            return p==q;
         
-        if(p==NULL and q!=NULL)
-            return false;
-        
-        if(q==NULL and p!=NULL)
-            return false;
-        
-        return p->val==q->val and isSameTree(p->left,q->left) and  isSameTree(p->right,q->right);
+        return p->val==q->val and isSameTree(p->left,q->left) and isSameTree(p->right,q->right);
         
         
     }
-};

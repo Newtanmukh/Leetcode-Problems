@@ -1,0 +1,19 @@
+   vector<int> findDuplicates(vector<int>& nums) {
+      int n=nums.size();
+        vector<int>mapper(n+1,0);
+        vector<int>ans;
+        
+        for(auto x:nums)
+        {
+            mapper[x]++;
+        }
+        
+        for(int i=1;i<=n;i++)
+        {
+            if(mapper[i]==2)
+                ans.push_back(i);
+        }
+        
+    return ans;
+
+    }

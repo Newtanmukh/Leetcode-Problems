@@ -1,0 +1,33 @@
+ vector<vector<int>> levelOrder(Node* root) {
+        queue<Node*>q;
+        vector<vector<int>>ans;
+        if(!root)
+            return ans;
+        
+        q.push(root);
+        
+        
+        while(!q.empty())
+        {
+            int size=q.size();
+            vector<int>level;
+            for(int i=0;i<size;i++)
+            {
+                Node* front=q.front();
+                q.pop();
+                
+                for(Node* x:front->children)
+                {
+                    if(x!=NULL)
+                    {
+                        q.push(x);
+                    }
+                }
+                level.push_back(front->val);
+            }
+            ans.push_back(level);
+        }
+        return ans;
+        
+        
+    }

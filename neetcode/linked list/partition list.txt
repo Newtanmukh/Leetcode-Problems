@@ -1,0 +1,32 @@
+ ListNode* partition(ListNode* head, int x) {
+        
+        vector<int>less;
+        vector<int>big;
+        
+        ListNode* ret=head;
+        while(ret)
+        {
+            if(ret->val<x)
+                less.push_back(ret->val);
+            else
+                big.push_back(ret->val);
+            ret=ret->next;
+        }
+        
+        ret=head;
+        
+        for(auto x:less)
+        {
+            ret->val=x;
+            ret=ret->next;
+        }
+        
+        for(auto x:big)
+        {
+            ret->val=x;
+            ret=ret->next;
+        }
+        
+        return head;
+        
+    }

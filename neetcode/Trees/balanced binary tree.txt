@@ -1,14 +1,11 @@
-class Solution {
-public:
-    bool ans=true;
+     bool ans=true;
    
-    int maxheight(TreeNode* root)
+    int height(TreeNode* root)
     {
-        if(!root)
+        if(root==NULL)
             return 0;
-        
-        int left=maxheight(root->left);
-        int right=maxheight(root->right);
+        int left=height(root->left);
+        int right=height(root->right);
         
         if(abs(left-right)>1)
             ans=false;
@@ -19,8 +16,6 @@ public:
     
     bool isBalanced(TreeNode* root) {
         
-        int x;        
-        x=maxheight(root);
+       int x=height(root);
         return ans;
     }
-};

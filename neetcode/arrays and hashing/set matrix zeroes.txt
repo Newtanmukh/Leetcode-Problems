@@ -1,0 +1,29 @@
+ void setZeroes(vector<vector<int>>& grid) {
+        
+       int rowsize=grid.size();
+       int colsize=grid[0].size();
+       vector<int>row(rowsize,1);
+        vector<int>col(colsize,1);
+        
+       for(int i=0;i<rowsize;i++)
+           for(int j=0;j<colsize;j++)
+           {
+               if(grid[i][j]==0)
+               {
+                   row[i]=0;
+                   col[j]=0;
+               }
+           }
+        
+        for(int i=0;i<rowsize;i++)
+           for(int j=0;j<colsize;j++)
+           {
+               if(row[i]==0 or col[j]==0)
+               {
+                   grid[i][j]=0;
+               }
+           }
+        
+        
+        
+    }

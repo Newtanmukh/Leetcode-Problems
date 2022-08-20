@@ -1,0 +1,33 @@
+ map<int,int>mapper;
+    int maxi=INT_MIN;
+    
+    int sub(TreeNode* root)
+    {
+        if(!root)
+            return 0;
+        
+        int left=sub(root->left);
+        int right=sub(root->right);
+        
+        mapper[left+right+root->val]++;
+        maxi=max(maxi,mapper[left+right+root->val]);
+        
+        return root->val+left+right;
+            
+    }
+    
+    vector<int> findFrequentTreeSum(TreeNode* root) {
+        int x=sub(root);
+        
+        vector<int>p;
+        for(auto x:mapper)
+        {
+            if(x.second==maxi)
+            {
+                p.push_back(x.first);
+            }
+        }
+        
+        return p;
+        
+    }

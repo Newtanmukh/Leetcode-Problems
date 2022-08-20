@@ -1,31 +1,21 @@
-class Solution {
-public:
-    ListNode* removeElements(ListNode* head, int x) {
-        if(!head)
-            return head;
-        vector<int> vec;
-      ListNode* start=head;
-        while(start)
-        {if(start->val!=x)
-        {vec.push_back(start->val);}
-        start=start->next;}
-        ListNode* node=head;
-        int iter=0;
-        ListNode* returntype=new ListNode();
-        ListNode* ok=returntype;
-        if(vec.size()){
-        while(iter<vec.size())  //basically if all node in the LL were same, then vector would be empty so we would habve to return NULL in that case.
-        {ok->val=vec[iter];
-         iter++;
-         if(iter<=vec.size()-1){
-         ok->next=new ListNode(1);
-        ok=ok->next;}}}
-        else
-            return NULL;
-        
+  ListNode* removeElements(ListNode* head, int target) {
      
-        return returntype;
+      if(!head)
+          return head;
         
+      ListNode* node=head;
         
+      while(node!=NULL and node->next!=NULL)
+      {
+          if(node->next->val==target)
+              node->next=node->next->next;
+          else
+              node=node->next;
+      }
+        
+        if(head->val==target)
+        {
+            head=head->next;
+        }
+        return head;
     }
-};
