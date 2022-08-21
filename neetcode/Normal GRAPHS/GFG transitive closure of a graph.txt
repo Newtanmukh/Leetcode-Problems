@@ -1,0 +1,45 @@
+ void dfs(int x,vector<bool>&visited,vector<int>adj[],vector<int>&level)
+    {
+        visited[x]=true;
+        level.push_back(x);
+        
+        for(int i:adj[x])
+        {
+            if(visited[i]==false)
+            {
+                dfs(i,visited,adj,level);
+            }
+        }
+    }
+
+    
+    vector<vector<int>> transitiveClosure(int N, vector<vector<int>> g)
+    {
+        
+       int row=g.size();
+       vector<int>adj[row];
+       int col=g[0].size();
+       for(int i=0;i<row;i++)
+        for(int j=0;j<col;j++)
+            {
+                if(g[i][j]==1)
+                adj[i].push_back(j);
+            }
+            
+        vector<vector<int>>ans(g.size(),vector<int>(g[0].size(),0));
+        
+        for(int r=0;r<row;r++)
+        {
+            vector<bool>visited(row,false);
+            vector<int>level;
+            dfs(r,visited,adj,level);
+            
+            for(int i=0;i<level.size();i++)
+            {
+            ans[r][level[i]]=1;    
+            }
+            
+        }
+        return ans;
+        
+    }

@@ -1,46 +1,49 @@
-bool bfs(int x,vector<int>adj[],vector<int>&color,vector<bool>&visited)
+bool bfs(int node,vector<bool>&visited,vector<int>&color,vector<int>adj[])
     {
-       
-        
-        visited[x]=true;
-        
-        color[x]=1;
         queue<int>q;
-        visited[x]=true;
-        q.push(x);
+        q.push(node);
+        visited[node]=true;
+        
+        color[node]=0;
+        
         
         while(!q.empty())
         {
-            int node=q.front();
+            int front=q.front();
             q.pop();
             
-            for(auto u:adj[node])
+            for(auto neighbour:adj[front])
             {
-                if(!visited[u])
+                if(visited[neighbour]==false)
                 {
-                    color[u]=1-color[node];
-                    visited[u]=true;
-                    q.push(u);
+                    visited[neighbour]=true;
+                    color[neighbour]=1-color[front];
+                    q.push(neighbour);
                 }
-                else if(color[u]==color[node])
-                {
-                    return false;
-                }
+                if(color[neighbour]==color[front])
+                return true;
+                
             }
         }
-        return true;
+        
+        return false;
+        
     }
     
-	bool isBipartite(int v, vector<int>adj[]){
-	   vector<bool>visited(v,false);
-	   vector<int>color(v,-1);
-	   for(int i=0;i<v;i++)
-	   {
-	       if(!visited[i])
-	       {
-	           if(bfs(i,adj,color,visited)==false)
-	           return false;
-	       }
-	   }
-	   return true;
+	bool isBipartite(int V, vector<int>adj[])
+	{
+	  vector<int>color(V,-1);
+	  vector<bool>visited(V,false);
+	  
+	  for(int i=0;i<V;i++)
+	  {
+	      if(visited[i]==false)
+	      {
+	          if(bfs(i,visited,color,adj)==true)
+	          return false;
+	      }
+	  }
+	  return true;
+	  
+	  
 	}

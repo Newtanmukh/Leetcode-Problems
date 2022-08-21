@@ -1,11 +1,11 @@
- bool cycle(int node,vector<bool>&visited,vector<bool>&stack,vector<int>adj[])
+bool cycle(int node,vector<bool>&visited,vector<bool>&stack,vector<int>adj[])
     {
         visited[node]=true;
         stack[node]=true;
         
-        for(auto neighbour:adj[node])
+        for(int neighbour:adj[node])
         {
-            if(!visited[neighbour])
+            if(visited[neighbour]==false)
             {
                 if(cycle(neighbour,visited,stack,adj))
                 return true;
@@ -15,31 +15,31 @@
                 return true;
             }
         }
+        
         stack[node]=false;
-       return false;
+        return false;
     }
     
-	bool isPossible(int V, vector<pair<int, int> >& prerequisites) {
-	   
+	bool isPossible(int V, vector<pair<int, int> >& prerequisites) 
+	{
+	   vector<bool>visited(V,false);
+	   vector<bool>stack(V,false);
 	   vector<int>adj[V];
 	   
 	   for(auto edge:prerequisites)
 	   {
-	       adj[edge.second].push_back(edge.first);//directed graph,for doing the second u need to do the first so a edge from second to first
-	       
+	       adj[edge.first].push_back(edge.second);
 	   }
-	   
-	   vector<bool>visited(V,false);
-	   vector<bool>inside_recursion_stack(V,false);
 	   
 	   for(int i=0;i<V;i++)
 	   {
 	       if(visited[i]==false)
 	       {
-	           if(cycle(i,visited,inside_recursion_stack,adj))
-	           return false;
+	           if(cycle(i,visited,stack,adj))
+	           return false;//if cycle is present,then it means that it is NOT possible. so return false;
 	       }
 	   }
 	   
-	   return true;
+	   return true;//if cycle is NOT present , then it means that it is indeed possible.
+	   
 	}

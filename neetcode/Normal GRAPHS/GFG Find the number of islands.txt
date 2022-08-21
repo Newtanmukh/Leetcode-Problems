@@ -1,0 +1,39 @@
+//always check about the datatype. here it was char. we were not able to do it before cause we were checking for int type.  
+
+ void dfs(int x,int y,vector<vector<char>>&g)
+    {
+        if(x<0||y<0||x>=g.size()||y>=g[0].size())
+        return;
+        
+        if(g[x][y]=='0')
+        return;
+        
+        g[x][y]='0';
+        
+        dfs(x+1,y,g);
+        dfs(x,y+1,g);
+        dfs(x-1,y,g);
+        dfs(x,y-1,g);
+        dfs(x+1,y+1,g);
+        dfs(x+1,y-1,g);
+        dfs(x-1,y+1,g);
+        dfs(x-1,y-1,g);
+        
+    }
+    
+    int numIslands(vector<vector<char>>& grid) {
+        int count=0;
+        
+        int row=grid.size();
+        int col=grid[0].size();
+        for(int i=0;i<row;i++)
+            for(int j=0;j<col;j++)
+            {
+                if(grid[i][j]=='1')
+                {
+                    count++;
+                    dfs(i,j,grid);
+                }
+            }
+        return count;
+    }

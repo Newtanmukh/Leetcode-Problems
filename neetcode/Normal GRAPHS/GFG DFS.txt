@@ -1,31 +1,32 @@
-void dfs(int x,vector<bool>&visited,vector<int> adj[],vector<int>&ans)
-    {
-        if(visited[x]==true)
-        return;
-        visited[x]=true;
-        ans.push_back(x);
-        
-        for(auto y:adj[x])
-        {
-            if(!visited[y])
-            {
-                dfs(y,visited,adj,ans);
-            }
-        }
-    }
+    vector<int>ans;
     
    
+    void dfs(int x,vector<bool>&visited,vector<int>adj[])
+    {
+        
+    visited[x]=true;
+    ans.push_back(x);
+    
+    for(int neighbour:adj[x])
+    {
+        if(visited[neighbour]==false)
+        {
+            dfs(neighbour,visited,adj);
+        }
+    }
+        
+    }
     
     
     vector<int> dfsOfGraph(int V, vector<int> adj[]) {
-        vector<bool>visited(V+1,false);
-        vector<int>ans;
+        
+        vector<bool>visited(V,false);
         
         for(int i=0;i<V;i++)
         {
             if(visited[i]==false)
-            dfs(i,visited,adj,ans);
+            dfs(i,visited,adj);
         }
+        
         return ans;
-       
     }

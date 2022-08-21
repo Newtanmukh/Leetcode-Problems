@@ -1,0 +1,34 @@
+ int count=0;
+    //Function to find the number of 'X' total shapes.
+    void dfs(int x,int y,vector<vector<char>>& grid)
+    {
+        if(x<0||y<0||x>=grid.size()||y>=grid[0].size())
+        return;
+        
+        if(grid[x][y]=='O')
+        return;
+        
+        grid[x][y]='O';
+        
+        dfs(x+1,y,grid);
+        dfs(x,y+1,grid);
+        dfs(x-1,y,grid);
+        dfs(x,y-1,grid);
+    }
+    
+    int xShape(vector<vector<char>>& grid) 
+    {
+        int row=grid.size();
+        int col=grid[0].size();
+        
+        for(int i=0;i<row;i++)
+            for(int j=0;j<col;j++)
+            {
+                if(grid[i][j]=='X')
+                {
+                    count++;
+                    dfs(i,j,grid);
+                }
+            }
+        return count;
+    }
