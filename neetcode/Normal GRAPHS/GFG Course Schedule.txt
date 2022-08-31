@@ -1,0 +1,82 @@
+ bool cycle(int node,vector<bool>&visited,vector<bool>&stack,vector<int>adj[])
+    {
+        visited[node]=true;
+        stack[node]=true;
+        
+        for(auto neighbour:adj[node])
+        {
+            if(visited[neighbour]==false)
+            {
+                if(cycle(neighbour,visited,stack,adj))
+                return true;
+            }
+            else if(stack[neighbour]==true)
+            {
+                return true;
+            }
+        }
+        stack[node]=false;
+        return false;
+    }
+    
+    void topological_sort(int node,vector<bool>&visited,vector<int>adj[],vector<int>&ans)
+    {
+        visited[node]=true;
+        
+        for(int neighbour:adj[node])
+        {
+            if(visited[neighbour]==false)
+            {
+                topological_sort(neighbour,visited,adj,ans);
+            }
+        }
+        ans.push_back(node);
+    }
+    
+    vector<int> findOrder(int V, int m, vector<vector<int>> prerequisites) 
+    {
+        
+       //getting the adjacency list.
+       vector<int>adj[V];
+       
+       for(auto edge:prerequisites)
+       {
+           adj[edge[1]].push_back(edge[0]);
+       }
+        
+       bool iscycle=false;
+       //PART1 : cycle detection
+       vector<bool>visited(V,false);
+       vector<bool>stack(V,false);
+       vector<int>ans;
+       
+       for(int i=0;i<V;i++)
+       {
+           if(visited[i]==false)
+           {
+               if(cycle(i,visited,stack,adj))
+               return ans;
+           }
+       }
+       
+       
+       
+       for(int i=0;i<V;i++)
+       {
+           visited[i]=false;
+       }
+       
+       //PART 2 : topological sorting
+       
+       for(int i=0;i<V;i++)
+       {
+           if(visited[i]==false)
+           {
+               topological_sort(i,visited,adj,ans);
+           }
+       }
+       
+       reverse(ans.begin(),ans.end());
+       return ans;
+        
+    }

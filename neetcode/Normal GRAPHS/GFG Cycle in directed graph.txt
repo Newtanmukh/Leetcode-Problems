@@ -1,9 +1,9 @@
- bool cycle(int node,vector<bool>&visited,vector<bool>&stack,vector<int>adj[])
+bool cycle(int node,vector<bool>&visited,vector<bool>&stack,vector<int>adj[])
    {
        visited[node]=true;
        stack[node]=true;
        
-       for(auto neighbour:adj[node])
+       for(int neighbour:adj[node])
        {
            if(visited[neighbour]==false)
            {
@@ -15,6 +15,7 @@
                return true;
            }
        }
+       
        stack[node]=false;
        return false;
    }
@@ -30,9 +31,12 @@
        if(visited[i]==false)
        {
            if(cycle(i,visited,stack,adj))
-           return true;
+           {
+               return true;
+           }
        }
    }
+   
    return false;
    
    }

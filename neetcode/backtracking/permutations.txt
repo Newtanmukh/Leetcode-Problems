@@ -1,0 +1,32 @@
+ector<vector<int>> ans;
+    
+    void permutate(vector<int> nums,int l,int r)
+    {
+        if(l==r)
+            ans.push_back(nums);
+        else
+        {
+            
+            for(int i=l;i<=r;i++)
+            {
+                swap(nums[l],nums[i]);
+                
+                permutate(nums,l+1,r);
+                
+                swap(nums[l],nums[i]);
+                
+                
+            }
+            
+        }
+        
+        
+    }
+    
+    
+    vector<vector<int>> permute(vector<int>& nums) {
+       
+        permutate(nums,0,nums.size()-1);
+        return ans;
+        
+    }

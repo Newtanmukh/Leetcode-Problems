@@ -1,29 +1,64 @@
- int findMotherVertex(int V, vector<int>adj[])
-{
-   for(int i=0;i<V;i++)
-   {
-       vector<bool>visited(V,false);
-       queue<int>q;
-       visited[i]=true;
-       q.push(i);
-       vector<int>temp;
+//Topological sorting. the first node has to be the required node otherwise it is not. 
+
+
+vector<int>ans;
+    vector<int>temp;
+    
+    void topological_sort(int node,vector<bool>&visited,vector<int>adj[])
+    {
+        visited[node]=true;
        
-       while(!q.empty())
-       {
-           int node=q.front();
-           q.pop();
-           temp.push_back(node);
-           for(auto u : adj[node])
-           {
-               if(visited[u]==false)
-               {
-                   visited[u]=true;
-                   q.push(u);
-               }
-           }
-       }
-       if(temp.size()==V)
-       return i;
-   }
-   return -1;
-}
+        
+        for(auto neighbour:adj[node])
+        {
+            if(visited[neighbour]==false)
+            {
+                topological_sort(neighbour,visited,adj);
+            }
+        }
+        ans.push_back(node);
+    }
+    
+    void dfs(int node,vector<bool>&visited,vector<int>adj[])
+    {
+        visited[node]=true;
+        
+        temp.push_back(node);
+        
+        for(int neighbour:adj[node])
+        {
+            if(visited[neighbour]==false)
+            {
+                dfs(neighbour,visited,adj);
+            }
+        }
+    }
+    
+    int findMotherVertex(int V, vector<int>adj[])
+    {
+     vector<bool>visited(V,false);
+     
+    for(int i=0;i<V;i++)
+    {
+        if(visited[i]==false)
+        {
+            topological_sort(i,visited,adj);
+        }
+    }
+    
+    int size=ans.size();
+    
+    for(int i=0;i<V;i++)
+    {
+        visited[i]=false;
+    }
+    int top=ans[ans.size()-1];
+    
+    dfs(top,visited,adj);
+    
+    if(temp.size()==size)
+    return top;
+    
+    return -1;
+     
+    }

@@ -1,0 +1,115 @@
+//question statement is wrong
+
+void dfs(int node,vector<bool>&visited,vector<int>adj[])
+    {
+        visited[node]=true;
+        
+        for(int neighbour:adj[node])
+        {
+            if(visited[neighbour]==false)
+            {
+                dfs(neighbour,visited,adj);
+            }
+        }
+        
+    }
+    
+    
+
+   int isBridge(int V, vector<int> adj[], int c, int d) 
+   {
+       //undirected graph. so from adjacency list of c remove d and vice versa.
+       adj[c].erase(find(adj[c].begin(),adj[c].end(),d));
+       adj[d].erase(find(adj[d].begin(),adj[d].end(),c));
+       
+       vector<bool>visited(V,false);
+       
+       dfs(c,visited,adj);
+       
+       if(visited[d]==false)
+       return 1;
+       
+       return 0;
+       
+       
+   }
+
+
+
+
+
+
+
+
+
+
+
+*******************************************************************
+
+
+ITERATOR SOLUTION
+
+
+
+void dfs(int node,vector<bool>&visited,vector<int>adj[])
+    {
+        visited[node]=true;
+        
+        for(int neighbour:adj[node])
+        {
+            if(visited[neighbour]==false)
+            {
+                dfs(neighbour,visited,adj);
+            }
+        }
+        
+    }
+    
+    
+
+   int isBridge(int V, vector<int> adj[], int c, int d) 
+   {
+       //undirected graph. so from adjacency list of c remove d and vice versa.
+       
+       auto it=adj[c].begin();
+       
+       while(it!=adj[c].end())
+       {
+           if(*it==d)
+           {
+               break;
+           }
+           else
+           {
+               it++;
+           }
+       }
+       adj[c].erase(it);
+       
+         it=adj[d].begin();
+        
+        while(it!=adj[d].end())
+       {
+           if(*it==c)
+           {
+               break;
+           }
+           else
+           {
+               it++;
+           }
+       }
+       
+       adj[d].erase(it);
+       
+       vector<bool>visited(V,false);
+       
+       dfs(c,visited,adj);
+       
+       if(visited[d]==false)
+       return 1;
+       
+       return 0;
+       
+       
+   }

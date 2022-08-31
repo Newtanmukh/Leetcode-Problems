@@ -1,18 +1,16 @@
-bool bfs(int node,vector<bool>&visited,vector<int>&color,vector<int>adj[])
+  bool bipartite(int node,vector<bool>&visited,vector<int>&color,vector<int>adj[])
     {
         queue<int>q;
         q.push(node);
         visited[node]=true;
-        
         color[node]=0;
-        
         
         while(!q.empty())
         {
             int front=q.front();
             q.pop();
             
-            for(auto neighbour:adj[front])
+            for(int neighbour:adj[front])
             {
                 if(visited[neighbour]==false)
                 {
@@ -20,30 +18,30 @@ bool bfs(int node,vector<bool>&visited,vector<int>&color,vector<int>adj[])
                     color[neighbour]=1-color[front];
                     q.push(neighbour);
                 }
-                if(color[neighbour]==color[front])
-                return true;
                 
+                if(color[neighbour]==color[front])
+                return false;
             }
         }
-        
-        return false;
-        
+        return true;
     }
     
-	bool isBipartite(int V, vector<int>adj[])
-	{
-	  vector<int>color(V,-1);
-	  vector<bool>visited(V,false);
-	  
-	  for(int i=0;i<V;i++)
-	  {
-	      if(visited[i]==false)
-	      {
-	          if(bfs(i,visited,color,adj)==true)
-	          return false;
-	      }
-	  }
-	  return true;
-	  
-	  
+    
+	bool isBipartite(int V, vector<int>adj[]){
+	   vector<int>color(V,-1);
+	   vector<bool>visited(V,false);
+	   
+	   for(int i=0;i<V;i++)
+	   {
+	       if(visited[i]==false)
+	       {
+	       if(bipartite(i,visited,color,adj)==false)
+	       {
+	           return false;
+	       }
+	           
+	       }
+	   }
+	   
+	   return true;
 	}

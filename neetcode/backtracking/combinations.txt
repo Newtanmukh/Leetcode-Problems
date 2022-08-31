@@ -1,0 +1,24 @@
+    void dfs(vector<int>&vec,int begin,int n,int k)
+    {
+        if(vec.size()==k)
+        {
+            ans.push_back(vec);
+            return;
+        }
+        
+        for(int i=begin;i<=n;i++)
+        {
+            vec.push_back(i);
+            dfs(vec,i+1,n,k);
+            vec.pop_back();
+        }
+        
+    }
+    
+    
+    vector<vector<int>> combine(int n, int k)
+    {
+        vector<int>comb;
+        dfs(comb,1,n,k);
+        return ans;
+    }

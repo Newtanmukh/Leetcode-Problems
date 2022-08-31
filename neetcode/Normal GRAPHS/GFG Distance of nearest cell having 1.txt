@@ -1,0 +1,37 @@
+vector<vector<int>>nearest(vector<vector<int>>grid)
+	{
+	    int n = grid.size();
+	    int m = grid[0].size();
+	    vector<vector<int>> res(n, vector<int>(m, 0));
+	    
+	    queue<pair<int,int>> qq;
+	    for(int i=0; i<n; ++i){
+	        for(int j=0; j<m; ++j){
+	            if(grid[i][j] == 1){
+	                grid[i][j] = 2; /// visited marker
+	                qq.push({i, j});
+	            }
+	        }
+	    }
+	    
+	    vector<int> rows{0, 1, 0, -1};
+	    vector<int> cols{1, 0, -1, 0};
+	    
+	    while(!qq.empty()){
+	        auto curr = qq.front();
+	        qq.pop();
+	        
+	        int r = curr.first;
+	        int c = curr.second;
+	        for(int k=0; k<4; ++k){
+	            int x = r + rows[k];
+	            int y = c + cols[k];
+	            if(x>=0 && x<n && y>=0 && y<m && grid[x][y]!=2){
+	                grid[x][y] = 2;// mark visited
+	                res[x][y] = res[r][c] + 1;// update adj cell dist
+	                qq.push({x, y});
+	            }
+	        }
+	    }
+	    return res;
+	}

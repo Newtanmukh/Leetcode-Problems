@@ -1,0 +1,26 @@
+long long min(long long x,long long y)
+    {
+        if(x>y)
+        return y;
+        return x;
+    }
+    
+    long long findMinDiff(vector<long long> a, long long n, long long m){
+    
+    sort(a.begin(),a.end());
+    
+    //sliding window
+    
+   
+    
+    
+    long long mini=INT_MAX;
+    
+    for(int j=m-1;j<n;j++)
+    {
+        mini=min(mini,a[j]-a[j-m+1]);
+    }
+    
+    return mini;
+    
+    }   
