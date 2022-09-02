@@ -25,3 +25,52 @@ stack.push() : will put an element to the end.
 stack.pop() : will pop the element from the top
 stack . top() : will return the topmost element.
 
+
+POWER OF 2:
+if a number x is power of 2, x&(x-1)=0.
+
+
+FIND THE NUMBER OF ONE BITS OF A NUMBER 'n' :
+
+Log(n) time.
+unsigned int countSetBits(int n)
+    {
+        unsigned int count = 0;
+        while (n) {
+            n &= (n - 1);
+            count++;
+        }
+        return count;
+    }
+
+
+unsigned int countSetBits(unsigned int n)
+{
+	unsigned int count = 0;
+	while (n) {
+		count += n & 1;
+		n = n>>1;
+	}
+	return count;
+}
+
+
+
+PRINT DIVISORS :
+
+void printDivisors(int n)
+{
+    // Note that this loop runs till square root
+    for (int i=1; i<=sqrt(n); i++)
+    {
+        if (n%i == 0)
+        {
+            // If divisors are equal, print only one
+            if (n/i == i)
+                cout <<" "<< i;
+ 
+            else // Otherwise print both
+                cout << " "<< i << " " << n/i;
+        }
+    }
+}
