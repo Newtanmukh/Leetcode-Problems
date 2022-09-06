@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int countbits(int n)
+{
+    int count=0;
+    while(n)
+    {
+        count=count + (n&1);  //remember to put the brackets they are extrememly important. some operations have more privilege thats why
+
+        n=n>>1;
+    }
+    return count;
+}
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n;
+	    cin>>n;
+	    cout<<countbits(n)-1<<endl;
+	}
+	
+	return 0;
+}

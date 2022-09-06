@@ -27,6 +27,7 @@ stack . top() : will return the topmost element.
 
 
 POWER OF 2:
+
 if a number x is power of 2, x&(x-1)=0.
 
 
@@ -48,8 +49,8 @@ unsigned int countSetBits(unsigned int n)
 {
 	unsigned int count = 0;
 	while (n) {
-		count += n & 1;
-		n = n>>1;
+		count = count + n & 1;
+		n = n >> 1;
 	}
 	return count;
 }

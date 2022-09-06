@@ -1,0 +1,3 @@
+https://www.codechef.com/submit/ARREQU?tab=statement  //it is gettting WA for some reason
+
+https://www.codechef.com/submit/TREECLR

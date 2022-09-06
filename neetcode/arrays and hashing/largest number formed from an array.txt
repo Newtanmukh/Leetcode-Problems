@@ -1,0 +1,15 @@
+	static bool mycomp(string &s,string &t)
+	{
+	    return s+t>t+s;
+	}
+	
+	string printLargest(vector<string> &arr) {
+	    sort(arr.begin(),arr.end(),mycomp);
+	    string ans="";
+	    
+	    for(auto x:arr)
+	    {
+	        ans=ans+x;
+	    }
+	    return ans;
+	}

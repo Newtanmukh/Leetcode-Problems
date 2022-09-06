@@ -1,0 +1,22 @@
+int subarraysDivByK(vector<int>& nums, int k) {
+        int sum=0;
+        int count=0;
+        
+        unordered_map<int,int>mp;
+        mp[0]++;
+        
+        for(auto x:nums)
+        {
+            sum=sum+x;
+            mp[(sum%k+k)%k]++; 
+        }
+        
+        for(auto p:mp)
+        {
+            int a=p.second;
+            count=count+a*(a-1)/2;
+        }
+        
+        return count;
+        
+    }

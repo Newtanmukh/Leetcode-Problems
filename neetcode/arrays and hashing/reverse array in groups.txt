@@ -1,0 +1,7 @@
+ void reverseInGroups(vector<long long>& arr, int n, int k)
+{
+        for(int l=0; l<n; l+=k)
+	{
+		reverse(arr.begin()+l,arr.begin()+min(n,k+l));
+  	}
+  }
