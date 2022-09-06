@@ -8,6 +8,7 @@
            hmap[B[i]]--;
        }
        
+
       for(auto i:hmap){
           if(i.second!=0){
               return 0;
