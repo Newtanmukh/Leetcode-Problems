@@ -1,0 +1,32 @@
+int a = 0, b = 0, flag = 0;
+        while(k && a < n && b < m)
+        {
+            if(arr1[a] > arr2[b]) 
+            {
+                b++;
+                flag = 0;
+            }
+            else 
+            {
+                a++;
+                flag = 1;
+            }
+            k--;
+        }
+        
+        while(k && a < n)
+        {
+            a++;
+            k--;
+            flag = 1;
+        }
+        
+        while(k && b < m)
+        {
+            b++;
+            k--;
+            flag = 0;
+        }
+        
+        if(flag) return arr1[a - 1];
+        return arr2[b - 1];

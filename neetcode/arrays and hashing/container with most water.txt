@@ -5,20 +5,14 @@
     return b;
     }
     
-//move the smaller one forward.
-
     int maxArea(vector<int>& height) 
     {
         int i=0;
         int j=height.size()-1;
-        
         int maxi=INT_MIN;
         
         while(i<j)
         {
-            int x=height[i];
-            int y=height[j];
-            
             int p=min(height[i],height[j]);
             
             maxi=max(maxi,p*(j-i));
@@ -26,8 +20,9 @@
             if(height[i]<height[j])
                 i++;
             else
-                j--;         
+                j--;
         }
         
         return maxi;
+        
     }

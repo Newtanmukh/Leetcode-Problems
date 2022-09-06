@@ -1,0 +1,34 @@
+  vector<int> subarraySum(int arr[], int n, long long s)
+    {
+       if(s==0)
+       return {-1};
+       
+       //since arr[i] can only be arr[i]>=1, so there is no way we can get 
+          
+       int start=0;
+       int e=0;
+       
+       long long sum=0;
+       
+       while(e<n)
+       {
+            sum=sum+arr[e];
+            
+            while(sum>s)
+            {
+                sum=sum-arr[start];
+                start++;
+            }
+            
+            if(sum==s)
+            {
+                return {start+1,e+1};
+            }
+            
+            e=e+1;
+            
+       }
+       
+       return {-1};
+        
+    }
