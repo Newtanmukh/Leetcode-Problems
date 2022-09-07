@@ -1,13 +1,16 @@
-  string longestCommonPrefix(vector<string>& arr) {
-       
+string longestCommonPrefix(vector<string>& arr) {
+      
         if(arr.size()==1)
             return arr[0];
         
         string ans=arr[0];
         
-        for(int i=1;i<arr.size();i++)
+        int size=arr.size();
+        
+        for(int i=1;i<size;i++)
         {
             int j;
+            
             for(j=0;j<ans.size();j++)
             {
                 if(ans[j]!=arr[i][j])
@@ -15,9 +18,9 @@
             }
             
             ans=ans.substr(0,j);
-            if(ans=="")
-                return ans;
+            
         }
         
         return ans;
+      
     }

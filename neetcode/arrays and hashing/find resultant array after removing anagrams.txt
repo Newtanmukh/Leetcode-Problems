@@ -1,0 +1,32 @@
+ vector<string> removeAnagrams(vector<string>& words) {
+       int size=words.size();
+       vector<string>ans;
+        ans.push_back(words[0]);
+        
+        vector<int>p1(26,0);
+        
+        for(auto x:words[0])
+        {
+            p1[x-'a']++;
+        }
+        
+        //string first=words[0];
+        
+        for(int i=1;i<words.size();i++)
+        {
+            vector<int>p2(26,0);
+            
+            for(auto x:words[i])
+                p2[x-'a']++;
+            
+            if(p2==p1)
+                continue;
+            else
+            {
+                ans.push_back(words[i]);
+                p1=p2;         
+                }
+        }
+        return ans;
+        
+    }

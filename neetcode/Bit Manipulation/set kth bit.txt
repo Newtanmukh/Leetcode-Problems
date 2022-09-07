@@ -1,0 +1,6 @@
+ int setKthBit(int N, int k)
+    {
+        // Write Your Code here
+        
+        return N|(1<<k);
+    }

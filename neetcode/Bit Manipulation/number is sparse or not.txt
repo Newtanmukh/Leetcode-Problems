@@ -1,0 +1,14 @@
+ bool isSparse(int n)
+    {
+         int prev=0,curr=0;
+        while(n){
+            prev=curr;
+            curr=n%2;
+            n/=2;
+            if(prev ==1 && curr==1){
+                return 0;
+            }
+           
+        }
+        return 1;
+    }

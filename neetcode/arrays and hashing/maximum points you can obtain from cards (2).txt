@@ -1,0 +1,23 @@
+int maxScore(vector<int>& card, int k) {
+        
+        int sum=0;
+        
+        for(int i=0;i<k;i++)
+        {
+            sum=sum+card[i];
+        }
+        
+        int maxi=sum;
+        
+        int size=card.size();
+        
+        for(int i=0;i<k;i++)
+        {
+            sum=sum-card[k-1-i]+card[size-i-1];
+            if(maxi<sum)
+                maxi=sum;
+        }
+        
+        return maxi;
+        
+    }

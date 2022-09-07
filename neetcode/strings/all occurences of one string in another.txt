@@ -1,0 +1,15 @@
+void substrPosition(string str, string sub_str) 
+{
+	   bool flag = false;
+   		for (int i = 0; i < str.length(); i++) 
+		{
+      		if (str.substr(i, sub_str.length()) == sub_str)
+			{
+         cout << i << " ";
+         flag = true;
+    		  }
+
+   		}
+   if (flag == false)
+      cout << "NONE";
+}

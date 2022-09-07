@@ -1,0 +1,31 @@
+ bool isValid(string s) {
+    stack<char>st;
+        for(auto x:s)
+        {
+            if(x=='(' or x=='[' or x=='{')
+                st.push(x);
+            else
+            {
+                if(st.empty()==true)
+                    return false;
+                
+                 if(x == ')' && st.top() != '(')
+                return false;
+                
+                if(x == ']' && st.top() != '[')
+                return false;
+                
+                if(x == '}' && st.top() != '{')
+                return false;
+                
+                st.pop();
+            }
+        }
+        
+        if(st.empty()==true)
+            return true;
+        
+        return false;
+        
+        
+    }
