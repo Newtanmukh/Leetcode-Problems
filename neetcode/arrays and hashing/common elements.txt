@@ -1,0 +1,15 @@
+ vector<int> common_element(vector<int>v1,vector<int>v2)
+    {
+       unordered_map<int,int> mp;
+        for(int i:v1)
+            mp[i]++;
+        v1.clear();
+        for(int i: v2) 
+            if(mp[i]>0)
+                {v1.push_back(i);
+                mp[i]--;}
+                
+        sort(begin(v1),end(v1));
+        return v1;
+        
+    }

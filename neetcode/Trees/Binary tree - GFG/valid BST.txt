@@ -1,0 +1,12 @@
+   bool isvalid(Node* root,int min,int max)
+    {
+        if(root==NULL)
+        return true;
+        
+        return root->data>min and max>root->data and isvalid(root->left,min,root->data) and isvalid(root->right,root->data,max);
+    }
+    
+    bool isBST(Node* root) 
+    {
+        return isvalid(root,INT_MIN,INT_MAX);
+    }

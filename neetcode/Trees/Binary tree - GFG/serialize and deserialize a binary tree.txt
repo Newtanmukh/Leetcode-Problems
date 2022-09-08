@@ -1,0 +1,38 @@
+ void inorder(Node* root,vector<int>&ans)
+    {
+        if(root==NULL)
+        return;
+        
+        inorder(root->left,ans);
+        ans.push_back(root->data);
+        inorder(root->right,ans);
+    }
+    
+    vector<int> serialize(Node *root) 
+    {
+        vector<int>ans;
+        inorder(root,ans);
+        return ans;
+    }
+    
+    Node* helper(int low,int high,vector<int>ans)
+    {
+        if(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            Node* newnode=new Node(ans[mid]);
+            newnode->left=helper(low,mid-1,ans);
+            newnode->right=helper(mid+1,high,ans);
+            return newnode;
+        }
+        else 
+        {
+            return NULL;
+        }
+    }
+    
+    //Function to deserialize a list and construct the tree.
+    Node * deSerialize(vector<int> &A)
+    {
+       return helper(0,A.size()-1,A);
+    }
