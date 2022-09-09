@@ -1,54 +1,34 @@
-bool sol(vector<vector<int>>& grid,int n,int i,int j)
-    {
-        if(i>=n ||i<0 ||j>=n| j<0)
-        {
-            return false;
-            
+bool checkpath(int i,int j,vector<vector<bool>>&vis,vector<vector<int>>& grid){
+       if(i<0 or j<0 or i>=grid.size() or j>=grid[0].size() or grid[i][j]==0 or vis[i][j]==true){
+           return false;
+       }
+       
+       if(grid[i][j]==2)
+	{
+           return true;
         }
-        if(grid[i][j]==2)
-        return true;
-        if(grid[i][j]==0)
-        return false;
-        
-        grid[i][j]=0;
-        
-        
-        if(sol(grid,n, i+1, j))
-        return true;
-        
-        if(sol(grid,n, i-1, j))
-        return true;
-        
-        if(sol(grid,n, i, j-1))
-        return true;
-        
-        if(sol(grid,n, i, j+1))
-        return true;
-        
-        return false;
-        
-        
-    }
-    //Function to find whether a path exists from the source to destination.
-    bool is_Possible(vector<vector<int>>& grid) 
-    {
-        //code here
-        int i,j;
-        int n=grid.size();
-        
-        for( i=0;i<n;i++)
-        {
-            
-            for( j=0;j<n;j++)
-            {
-                
-                if(grid[i][j]==1)
-                {
-                    return sol(grid,n, i, j);
-                }               
-            }
-    
-        }
-
-        return false;
-    }
+       vis[i][j]=true;//means that its a blank cell and that we are here now.
+       if(checkpath(i-1,j,vis,grid))return true;
+       if(checkpath(i+1,j,vis,grid))return true;
+       if(checkpath(i,j+1,vis,grid))return true;
+       if(checkpath(i,j-1,vis,grid))return true;
+       return false;
+       
+   }
+   bool is_Possible(vector<vector<int>>& grid) 
+   {
+       //code here
+       int m=grid.size();
+       int n=grid[0].size();
+       vector<vector<bool>>vis(m,vector<bool>(n,false));
+       for(int i=0;i<m;i++){
+           for(int j=0;j<n;j++){
+               if(grid[i][j]==1){
+                   if(checkpath(i,j,vis,grid)){
+                       return true;
+                   }
+               }
+           }
+       }
+       return false;
+   }

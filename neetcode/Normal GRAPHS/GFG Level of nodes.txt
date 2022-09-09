@@ -1,37 +1,33 @@
 int nodeLevel(int V, vector<int> adj[], int X) 
 	{
 	 
-	 if(X==0)
-	 return 0;
-	 
-	 vector<int>level(V,0);
-	 vector<int>parent(V,-1);
-	 vector<bool>visited(V,false);
-	 queue<int>q;
-	 q.push(0);
-	 visited[0]=true;
-	 
-	 while(!q.empty())
-	 {
-	     int front=q.front();
-	     q.pop();
-	     for(int neighbour:adj[front])
-	     {
-	         if(visited[neighbour]==false)
-	         {
-	             visited[neighbour]=true;
-	             level[neighbour]=level[front]+1;
-	             parent[neighbour]=front;
-	             q.push(neighbour);
-	         }
-	         if(neighbour==X)
-	         {
-	             return level[X];
-	         }
-	     }
-	     
-	 }
-	 
-	 return -1;
-	 
+	    vector<bool>visited(V,false);
+	    
+	    vector<int>level(V,0);
+	    queue<int>q;
+	    q.push(0);
+	    visited[0]=true;
+	    
+	    while(!q.empty())
+	    {
+	        int node=q.front();
+	        q.pop();
+	        
+	        for(int neighbour:adj[node])
+	        {
+	            if(visited[neighbour]==false)
+	            {
+	                visited[neighbour]=true;
+	                level[neighbour]=1+level[node];
+	                q.push(neighbour);
+	            }
+	            
+	            if(neighbour==X)
+	            return level[neighbour];
+	        }
+	    }
+	    
+	    return -1;
+	   
+	    
 	}

@@ -1,0 +1,58 @@
+//question is circle of graphs.
+
+void dfs(int node,unordered_map<int,bool>&visited,unordered_map<int,vector<int>>graph)
+    {
+        visited[node]=true;
+        
+        for(auto neighbour:graph[node])
+        {
+            if(visited[neighbour]==false)
+            {
+                dfs(neighbour,visited,graph);
+            }
+        }
+        
+    }
+    
+    int isCircle(int N, vector<string> A)
+    {
+        
+        //the thing is that in this question, we need to determine that if it is a circle or not. there are two conditions for the same:
+        //first one is , number of connected components should be strictly one.
+        //second is it should be a eularian circuit that is, every edge should be visited exactly once.
+        
+        unordered_map<int,vector<int>>graph;
+        
+        for(auto x:A)
+        {
+            graph[x[0]-'a'].push_back(x[x.size()-1]-'a');
+            graph[x[x.size()-1]-'a'].push_back(x[0]-'a');
+        }
+        
+        unordered_map<int,bool>visited;
+        
+        int count=0;
+        
+        for(auto u:graph)
+        {
+            if(!visited[u.first])
+            {
+                dfs(u.first,visited,graph);
+                count++;
+            }
+        }
+        
+        
+        if(count>1)
+        return 0;//it means that the number of connected components are more than 1.
+        
+        
+        for(auto x:graph)
+        {
+            if(graph[x.first].size()%2)
+            return 0;
+        }
+        
+        return 1;
+        
+    }

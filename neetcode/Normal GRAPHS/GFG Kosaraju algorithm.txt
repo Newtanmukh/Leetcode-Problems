@@ -1,0 +1,80 @@
+//Function to find number of strongly connected components in the graph.
+
+
+//step 1: do topological sort to find the vertices
+//step 2 : do transpose of the graph(reverse the edges)
+//step 3 : now do dfs on this stack and simply return the number of connected components.
+
+ 
+	vector<int>topo_sort;
+	
+	void toposort(int node,vector<bool>&visited,vector<int>adj[])
+	{
+	    visited[node]=true;
+	    
+	    for(int neighbour:adj[node])
+	    {
+	        if(visited[neighbour]==false)
+	        {
+	            toposort(neighbour,visited,adj);
+	        }
+	    }
+	    
+	    topo_sort.push_back(node);
+	    
+	}
+	
+	void dfs(int node,vector<bool>&visited,vector<int>trans[])
+	{
+	    visited[node]=true;
+	    
+	    for(int neighbour:trans[node])
+	    {
+	        if(visited[neighbour]==false)
+	        {
+	            dfs(neighbour,visited,trans);
+	        }
+	    }
+	}
+	
+    int kosaraju(int V, vector<int> adj[])
+    {
+        vector<bool>visited(V,false);
+        
+        for(int i=0;i<V;i++)
+        {
+            if(visited[i]==false)
+            {
+                toposort(i,visited,adj);//doing topological sort
+            }
+        }
+        
+        vector<int>transpose[V];
+        
+        for(int i=0;i<V;i++)
+        {
+            for(auto it:adj[i])
+            {
+                transpose[it].push_back(i);//basically if there was an edge i->j, then we will construct an edge j->i.
+            }
+        }
+        
+        for(int i=0;i<V;i++)
+        visited[i]=false;
+        
+        
+        int count=0;
+        reverse(topo_sort.begin(),topo_sort.end());//since we have created the transpose so it is necessary to  reverse the topo_sort vector.
+        
+        for(int i=0;i<topo_sort.size();i++)
+        {
+            if(visited[topo_sort[i]]==false)
+            {
+                count++;
+                dfs(topo_sort[i],visited,transpose);
+            }
+        }
+        
+        return count;
+        
+    }

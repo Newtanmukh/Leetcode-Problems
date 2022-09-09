@@ -1,35 +1,41 @@
- bool cycle(int current,int parent,vector<bool>&visited,vector<int>adj[])
+ bool dfs(int current,int parent,vector<bool>&visited,vector<int>adj[])
     {
         visited[current]=true;
         
-        for(auto neighbour:adj[current])
+        for(int neighbour:adj[current])
         {
-           
-        if(neighbour==parent)
+            if(neighbour==parent)
             continue;
-        
-        if(visited[neighbour]==true)
+            
+            if(visited[neighbour]==true)
             return true;
-        
-        if(visited[neighbour]==false)
-        {
-            if(cycle(neighbour,current,visited,adj))
+            
+            if(visited[neighbour]==false)
+            {
+                if(dfs(neighbour,current,visited,adj))
                 return true;
+            }
+            
         }
-        }
+        
         return false;
     }
     
+    
+    
     bool isCycle(int V, vector<int> adj[]) {
+        
         vector<bool>visited(V,false);
         
         for(int i=0;i<V;i++)
         {
             if(visited[i]==false)
             {
-                if(cycle(i,-1,visited,adj))
+                if(dfs(i,-1,visited,adj))
                 return true;
             }
         }
+        
         return false;
+        
     }

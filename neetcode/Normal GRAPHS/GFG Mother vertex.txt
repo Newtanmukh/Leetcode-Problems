@@ -1,64 +1,62 @@
-//Topological sorting. the first node has to be the required node otherwise it is not. 
-
-
-vector<int>ans;
-    vector<int>temp;
+vector<int>topo;
     
+    int c=0;
     void topological_sort(int node,vector<bool>&visited,vector<int>adj[])
     {
         visited[node]=true;
-       
         
-        for(auto neighbour:adj[node])
+        for(int u:adj[node])
         {
-            if(visited[neighbour]==false)
+            if(visited[u]==false)
             {
-                topological_sort(neighbour,visited,adj);
+                topological_sort(u,visited,adj);
             }
         }
-        ans.push_back(node);
+        
+        topo.push_back(node);
+        
     }
     
     void dfs(int node,vector<bool>&visited,vector<int>adj[])
     {
         visited[node]=true;
-        
-        temp.push_back(node);
-        
-        for(int neighbour:adj[node])
+        c++;
+        for(int u:adj[node])
         {
-            if(visited[neighbour]==false)
+            if(visited[u]==false)
             {
-                dfs(neighbour,visited,adj);
+                dfs(u,visited,adj);
             }
         }
+        
     }
     
     int findMotherVertex(int V, vector<int>adj[])
     {
-     vector<bool>visited(V,false);
-     
-    for(int i=0;i<V;i++)
-    {
-        if(visited[i]==false)
+        
+        vector<bool>visited(V,false);
+        
+        for(int i=0;i<V;i++)
         {
-            topological_sort(i,visited,adj);
+            if(visited[i]==false)
+            {
+                topological_sort(i,visited,adj);
+            }
         }
-    }
-    
-    int size=ans.size();
-    
-    for(int i=0;i<V;i++)
-    {
-        visited[i]=false;
-    }
-    int top=ans[ans.size()-1];
-    
-    dfs(top,visited,adj);
-    
-    if(temp.size()==size)
-    return top;
-    
-    return -1;
+        
+        
+        for(int i=0;i<V;i++)
+        {
+            visited[i]=false;
+        }
+        
+        int mother=topo[topo.size()-1];
+        
+        dfs(mother,visited,adj);
+        
+        if(c==V)
+        return mother;
+        
+        return -1;
      
     }

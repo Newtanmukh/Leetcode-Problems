@@ -1,23 +1,49 @@
- void dfs(int x,vector<bool>&visited,vector<int>adj[],vector<int>&level)
+ void bfs(int node,vector<int>&ans,vector<int>adj[],int V)
     {
-        visited[x]=true;
-        level.push_back(x);
         
-        for(int i:adj[x])
+        vector<bool>visited(V,false);
+        
+        queue<int>q;
+        q.push(node);
+        visited[node]=true;
+        
+        while(!q.empty())
+        {
+            int x=q.front();
+            q.pop();
+            
+            for(int neighbour:adj[x])
+            {
+                if(visited[neighbour]==false)
+                {
+                    visited[neighbour]=true;
+                    q.push(neighbour);
+                }
+            }
+            
+        }
+        
+        for(int i=0;i<V;i++)
         {
             if(visited[i]==false)
             {
-                dfs(i,visited,adj,level);
+                ans.push_back(0);
+            }
+            else
+            {
+                ans.push_back(1);
             }
         }
+        //return ans;
+        
     }
-
     
     vector<vector<int>> transitiveClosure(int N, vector<vector<int>> g)
     {
         
        int row=g.size();
        vector<int>adj[row];
+       int V=N;
        int col=g[0].size();
        for(int i=0;i<row;i++)
         for(int j=0;j<col;j++)
@@ -26,20 +52,16 @@
                 adj[i].push_back(j);
             }
             
-        vector<vector<int>>ans(g.size(),vector<int>(g[0].size(),0));
+            
+        vector<vector<int>>p;
         
-        for(int r=0;r<row;r++)
+        for(int i=0;i<V;i++)
         {
-            vector<bool>visited(row,false);
-            vector<int>level;
-            dfs(r,visited,adj,level);
-            
-            for(int i=0;i<level.size();i++)
-            {
-            ans[r][level[i]]=1;    
-            }
-            
+            vector<int>ans;
+            bfs(i,ans,adj,V);
+            p.push_back(ans);    
         }
-        return ans;
+        
+        return p;
         
     }
